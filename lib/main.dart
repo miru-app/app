@@ -1,25 +1,64 @@
-import 'package:app/api.dart' as MiruAPI;
+import 'package:flutter/material.dart'; // Material design package
+import 'package:cached_network_image/cached_network_image.dart'; // Used for image caching and dynamic loading
+import 'package:app/kitsu.dart' as KitsuAPI; // Kitsu API methods
+import 'package:app/anime.dart'; // Custom anime classes
 
-void main() async {
-	// Looks up anime via the Kitsu API
-	final searchResults = await MiruAPI.search('that time I got reincarnated');
-	searchResults.forEach((searchResult) {
-		print(searchResult.toJson());
-	});
+// Start the app
+void main() {
+	// Run the app
+	runApp(MiruApp());
+}
 
-	// Gets details about a specific anime via it's Kitsu ID
-	final anime = await MiruAPI.getAnimeDetails(41024);
-	print(anime.toJson());
-	
-	// Gets episode details about a specific anime via it's Kitsu ID
-	final episodes = await MiruAPI.getAnimeEpisodes(41024);
-	episodes.forEach((episode) {
-		print(episode.toJson());
-	});
+// This is where the app lives
+class MiruApp extends StatelessWidget {
+	@override
+	Widget build(BuildContext context) {
+		final title = 'Miru';
 
-	// Gets streams for an anime stream via it's Kitsu ID and episode number
-	final streams = await MiruAPI.getAnimeStreams(41024, 1);
-	streams.forEach((stream) {
-		print(stream.toJson());
-	});
+		// For now I'm using the default material design classes
+		// We need to build our own custom widgets though
+		return new MaterialApp(
+			title: title,
+			home: new FutureBuilder(future: new Future(() async {
+				return KitsuAPI.getTranding();
+			}),
+			builder: (BuildContext context, AsyncSnapshot<List<Anime>> snapshot) {
+				// Very basic error handling
+				if (snapshot.error != null) {
+					return Text(title);
+				}
+
+				// If the data has not been fully received, display a loading icon
+				if (snapshot.data == null) {
+					return new Center(child: new CircularProgressIndicator());
+				}
+				
+				// This is where the image components live
+				final List<Widget> animeList = [];
+
+				// Add the widgets to the list
+				snapshot.data.forEach((anime) {
+					animeList.add(Container(
+						width: 284,
+						height: 402,
+						child: CachedNetworkImage(
+							imageUrl: anime.posterUrl,
+							placeholder: (context, url) => new CircularProgressIndicator(),
+						)
+					));
+				});
+
+				// Building the basic UI
+				return Scaffold(
+					appBar: AppBar(
+						title: Text(title),
+					),
+					body: ListView(
+						scrollDirection: Axis.horizontal,
+						children: animeList,
+					),
+				);
+			}),
+		);
+	}
 }
