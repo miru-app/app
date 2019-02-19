@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart'; // Material design package
-import 'package:app/pages/homepage.dart'; // Material design package
+import 'package:app/pages/homepage.dart'; // Homepage widget
 
 // Start the app
 void main() {
