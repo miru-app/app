@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart'; // Material design package
-import 'package:cached_network_image/cached_network_image.dart'; // Used for image caching and dynamic loading
 import 'package:app/kitsu.dart' as KitsuAPI; // Kitsu API methods
 import 'package:app/anime.dart'; // Custom anime classes
+import 'package:app/widgets/animewidget.dart'; // Anime widget
 
 // Start the app
 void main() {
@@ -38,14 +38,7 @@ class MiruApp extends StatelessWidget {
 
 				// Add the widgets to the list
 				snapshot.data.forEach((anime) {
-					animeList.add(Container(
-						width: 284,
-						height: 402,
-						child: CachedNetworkImage(
-							imageUrl: anime.posterUrl,
-							placeholder: (context, url) => new CircularProgressIndicator(),
-						)
-					));
+					animeList.add(AnimeWidget(anime: anime));
 				});
 
 				// Building the basic UI
