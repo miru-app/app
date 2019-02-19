@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart'; // Material design package
-import 'package:app/kitsu.dart' as KitsuAPI; // Kitsu API methods
+import 'package:app/apis/kitsu.dart' as KitsuAPI; // Kitsu API methods
 import 'package:app/widgets/animewidget.dart'; // Anime widget
 
 class HomePage extends StatelessWidget  {
