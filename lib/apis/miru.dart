@@ -20,7 +20,7 @@ Future<List<AnimeStream>> getAnimeStreams(int kitsuID, int episodeNumber) async 
 	};
 
 	// Send the POST request
-	final response = await http.post('http://localhost:8080/api/getStreams', body: body);
+	final response = await http.post('${config['miru_api_base']}/api/getStreams', body: body);
 	if (response.statusCode == 200) {
 		// Parse the JSON
 		final Map<String, dynamic> result = json.decode(response.body);

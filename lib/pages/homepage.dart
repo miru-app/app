@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget  {
 								),
 							);
 						} else if (snapshot.hasError) { //checks if the response throws an error
-							return Text("${snapshot.error}");
+							return Text(snapshot.error);
 						}
 
 						return CircularProgressIndicator(); // If no errors and no data, assume still loading

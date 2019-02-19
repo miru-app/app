@@ -1,9 +1,10 @@
 import 'dart:convert'; // Data conversion lib
 import 'package:http/http.dart' as http; // HTTP package
 import 'package:app/anime.dart'; // Custom anime classes
+import 'package:app/config.dart'; // App config
 
 Future<List<Anime>> search(String query) async {
-	final response = await http.get('https://kitsu.io/api/edge/anime?filter[text]=$query');
+	final response = await http.get('${config['kitsu_api_base']}/anime?filter[text]=$query');
 	if (response.statusCode == 200) {
 		// Parse the JSON
 		final Map<String, dynamic> result = json.decode(response.body);
@@ -16,7 +17,7 @@ Future<List<Anime>> search(String query) async {
 }
 
 Future<List<Anime>> getTranding() async {
-	final response = await http.get('https://kitsu.io/api/edge/trending/anime');
+	final response = await http.get('${config['kitsu_api_base']}/trending/anime');
 	if (response.statusCode == 200) {
 		// Parse the JSON
 		final Map<String, dynamic> result = json.decode(response.body);
@@ -29,7 +30,7 @@ Future<List<Anime>> getTranding() async {
 }
 
 Future<Anime> getAnimeDetails(int id) async {
-	final response = await http.get('https://kitsu.io/api/edge/anime/$id');
+	final response = await http.get('${config['kitsu_api_base']}/anime/$id');
 	if (response.statusCode == 200) {
 		// Parse the JSON
 		final Map<String, dynamic> data = json.decode(response.body);
@@ -43,7 +44,7 @@ Future<Anime> getAnimeDetails(int id) async {
 Future<List<AnimeEpisode>> getAnimeEpisodes(int id) async {
 	final List<Map<String, dynamic>> episodesList = [];
 
-	var response = await http.get('https://kitsu.io/api/edge/anime/$id/episodes');
+	var response = await http.get('${config['kitsu_api_base']}/anime/$id/episodes');
 	Map<String, dynamic> result = json.decode(response.body);
 	result['data'].forEach((episode) {
 		episodesList.add(episode);
