@@ -17,14 +17,12 @@ class Anime {
 		String posterUrl;
 		String coverUrl;
 
-		// Why does Dart not support if-or statements
-		if (json['attributes']['episodeLength'] == null) {
-			releasedCount = 0;
-		} else if (json['attributes']['totalLength'] == null) {
-			releasedCount = 0;
-		} else if (json['attributes']['episodeLength'] == 0) {
-			releasedCount = 0;
-		} else if (json['attributes']['totalLength'] == 0) {
+		if (
+			json['attributes']['episodeLength'] == null ||
+			json['attributes']['totalLength'] == null ||
+			json['attributes']['episodeLength'] == 0 ||
+			json['attributes']['totalLength'] == 0
+		) {
 			releasedCount = 0;
 		} else {
 			// Hack to get the total number of released episodes, since Kitsu does not give us that directly
