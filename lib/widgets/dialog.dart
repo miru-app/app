@@ -39,9 +39,11 @@ class MiruDialogState extends State<MiruDialog> with SingleTickerProviderStateMi
           scale: scaleAnimation,
           child: Container(
             decoration: ShapeDecoration(
-                color: Color.fromARGB(255, 255, 255, 255),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0))),
+              color: Color.fromARGB(255, 255, 255, 255),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0)
+              )
+            ),
             child: Padding(
               padding: const EdgeInsets.all(50.0),
               child: widget.content,

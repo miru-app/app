@@ -36,7 +36,7 @@ class AnimeWidget extends GestureDetector {
         height: 402,
         child: CachedNetworkImage(
           imageUrl: this.anime.posterUrl,
-          placeholder: (context, url) => new CircularProgressIndicator(),
+          placeholder: (context, url) => CircularProgressIndicator(),
         ),
       )/*
     );*/;

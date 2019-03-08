@@ -19,11 +19,11 @@ class AnimeWidgetSmall extends GestureDetector {
         );
       },
       child: CachedNetworkImage(
-          width: 113,
-          height: 167,
-          fit: BoxFit.fill,
-          imageUrl: this.anime.posterUrl,
-          placeholder: (context, url) => new Text("Loading"),
+        width: 113,
+        height: 167,
+        fit: BoxFit.fill,
+        imageUrl: this.anime.posterUrl,
+        placeholder: (context, url) => new Text("Loading"),
       )
     );
   }
