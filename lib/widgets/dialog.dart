@@ -13,7 +13,7 @@ class MiruDialog extends StatefulWidget {
 class MiruDialogState extends State<MiruDialog> with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> opacityAnimation;
-  Animation<double> scaleAnimatoin;
+  Animation<double> scaleAnimation;
 
   @override
   void initState() {
@@ -21,7 +21,7 @@ class MiruDialogState extends State<MiruDialog> with SingleTickerProviderStateMi
 
     controller = AnimationController(vsync: this, duration: Duration(milliseconds: 450));
     opacityAnimation = Tween<double>(begin: 0.0, end: 0.4).animate(CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
-    scaleAnimatoin = CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
+    scaleAnimation = CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
 
     controller.addListener(() {
       setState(() {
@@ -34,13 +34,12 @@ class MiruDialogState extends State<MiruDialog> with SingleTickerProviderStateMi
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 255, 255, 100),
       child: Center(
         child: ScaleTransition(
-          scale: scaleAnimatoin,
+          scale: scaleAnimation,
           child: Container(
             decoration: ShapeDecoration(
-                color: Color.fromARGB(0, 0, 0, 255),
+                color: Color.fromARGB(255, 255, 255, 255),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0))),
             child: Padding(

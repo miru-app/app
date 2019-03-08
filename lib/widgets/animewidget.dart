@@ -11,7 +11,7 @@ class AnimeWidget extends GestureDetector {
 
 	@override
 	Widget build(BuildContext context) {
-		return GestureDetector(
+		return /*GestureDetector(
 			onTap: () {
 				showDialog(
 					context: context,
@@ -31,14 +31,14 @@ class AnimeWidget extends GestureDetector {
 					}
 				);
 			},
-			child: Container(
+			child: */Container(
 				width: 284,
 				height: 402,
 				child: CachedNetworkImage(
 					imageUrl: this.anime.posterUrl,
 					placeholder: (context, url) => new CircularProgressIndicator(),
 				),
-			)
-		);
+      )/*
+		);*/;
 	}
 }

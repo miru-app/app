@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart'; // Material design package
+import 'package:flutter/widgets.dart'; // Material design package
 import 'package:app/apis/kitsu.dart' as KitsuAPI; // Kitsu API methods
-import 'package:app/widgets/animewidget.dart'; // Anime widget
 import 'package:app/widgets/animewidgetsmall.dart'; // Anime widget
 
 class HomePage extends StatelessWidget  {
@@ -10,7 +9,7 @@ class HomePage extends StatelessWidget  {
 
 	@override
 	Widget build(BuildContext context) {
-		return Center(
+		return Container(
 			child: FutureBuilder(
         future: KitsuAPI.getTranding(), // sets the getTranding method as the expected Future
         builder: (context, snapshot) {
@@ -23,11 +22,8 @@ class HomePage extends StatelessWidget  {
             });
 
             // Building the basic UI
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(title),
-              ),
-              body: ListView(
+            return Container(
+              child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: animeList,
               ),
@@ -36,7 +32,7 @@ class HomePage extends StatelessWidget  {
             return Text(snapshot.error);
           }
 
-          return CircularProgressIndicator(); // If no errors and no data, assume still loading
+          return Text("Loading..."); // If no errors and no data, assume still loading
         }
 			)
 		);
