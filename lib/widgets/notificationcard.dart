@@ -2,14 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
 
 class NotificationCard extends StatelessWidget  {
-	final String title;
+  final String title;
   final String text;
 
-	NotificationCard({this.title, this.text});
+  NotificationCard({this.title, this.text});
 
-	@override
-	Widget build(BuildContext context) {
-		return Container(
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       color: MiruColors.pinkPrimary,
       padding: EdgeInsets.fromLTRB(40, 45, 40, 30),
       child: Column(

@@ -6,9 +6,9 @@ import 'package:app/pages/homepage.dart'; // Homepage widget
 
 // Start the app
 void main() {
-	// Run the app
+  // Run the app
   //SdebugPaintSizeEnabled=true;
-	runApp(MiruApp());
+  runApp(MiruApp());
 }
 
 // This is where the app lives
@@ -74,5 +74,5 @@ Route generate(RouteSettings settings){
         initialRoute: "/",
         color: MiruColors.purplePrimary
     );
-	}
+  }
 }

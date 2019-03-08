@@ -6,8 +6,8 @@ import 'package:app/assets.dart';
 class TestPage extends StatelessWidget  {
 
   @override
-	Widget build(BuildContext context) {
-		return Container(
+  Widget build(BuildContext context) {
+    return Container(
       color: MiruColors.purplePrimary,
       child: Column(
         children: <Widget>[
@@ -29,7 +29,7 @@ class TestPage extends StatelessWidget  {
           )
         ]
       )
-		);
-	}
+    );
+  }
 
 }

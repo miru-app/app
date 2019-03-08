@@ -3,14 +3,14 @@ import 'package:app/apis/kitsu.dart' as KitsuAPI; // Kitsu API methods
 import 'package:app/widgets/animewidgetsmall.dart'; // Anime widget
 
 class HomePage extends StatelessWidget  {
-	final String title;
+  final String title;
 
-	HomePage({Key key, this.title}) : super(key: key);
+  HomePage({Key key, this.title}) : super(key: key);
 
-	@override
-	Widget build(BuildContext context) {
-		return Container(
-			child: FutureBuilder(
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FutureBuilder(
         future: KitsuAPI.getTranding(), // sets the getTranding method as the expected Future
         builder: (context, snapshot) {
           if (snapshot.hasData) { //checks if the response returns valid data
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget  {
 
           return Text("Loading..."); // If no errors and no data, assume still loading
         }
-			)
-		);
-	}
+      )
+    );
+  }
 }

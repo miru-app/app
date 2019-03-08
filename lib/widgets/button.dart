@@ -6,11 +6,11 @@ class Button extends StatelessWidget  {
   final String text;
   final onTap;
 
-	Button({this.text, this.onTap});
+  Button({this.text, this.onTap});
 
-	@override
-	Widget build(BuildContext context) {
-		return GestureDetector(
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),

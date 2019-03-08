@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 class MiruDialog extends StatefulWidget {
   final Text content;
 
-	MiruDialog({this.content}) : super();
+  MiruDialog({this.content}) : super();
 
   @override
   State<StatefulWidget> createState() => MiruDialogState();
