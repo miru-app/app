@@ -1,6 +1,7 @@
 class Anime {
   final int id;
   final String title;
+  final String status;
   final String synopsis;
   final String startDate;
   final String endDate;
@@ -10,7 +11,7 @@ class Anime {
   final String posterUrl;
   final String coverUrl;
 
-  Anime({this.id, this.title, this.synopsis, this.startDate, this.endDate, this.trailerId, this.episodeCount, this.releasedCount, this.posterUrl, this.coverUrl});
+  Anime({this.id, this.title, this.status, this.synopsis, this.startDate, this.endDate, this.trailerId, this.episodeCount, this.releasedCount, this.posterUrl, this.coverUrl});
 
   factory Anime.fromJson(Map<String, dynamic> json) {
     int releasedCount;
@@ -44,6 +45,7 @@ class Anime {
     return Anime(
       id: int.parse(json['id']), // Kitsu why the hell do you return the ID as a string when it's a number
       title: json['attributes']['canonicalTitle'],
+      status: json['attributes']['status'],
       synopsis: json['attributes']['synopsis'],
       startDate: json['attributes']['startDate'],
       endDate: json['attributes']['endDate'],
@@ -59,6 +61,7 @@ class Anime {
     return {
       'id': this.id,
       'title': this.title,
+      'status': this.status,
       'synopsis': this.synopsis,
       'startDate': this.startDate,
       'endDate': this.endDate,
