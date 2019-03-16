@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart'; // Material design package
-//import 'package:flutter/rendering.dart';
+import 'package:flutter/rendering.dart';
 import 'package:app/assets.dart';
 import 'package:app/pages/testpage.dart';
 import 'package:app/pages/homepage.dart'; // Homepage widget
@@ -7,7 +7,7 @@ import 'package:app/pages/homepage.dart'; // Homepage widget
 // Start the app
 void main() {
   // Run the app
-  //SdebugPaintSizeEnabled=true;
+  debugPaintSizeEnabled=true;
   runApp(MiruApp());
 }
 
