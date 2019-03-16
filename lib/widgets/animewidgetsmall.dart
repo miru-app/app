@@ -23,7 +23,7 @@ class AnimeWidgetSmall extends GestureDetector {
         height: 167,
         fit: BoxFit.fill,
         imageUrl: this.anime.posterUrl,
-        placeholder: (context, url) => new Text("Loading"),
+        placeholder: (BuildContext context, String url) => const Text('Loading'),
       )
     );
   }

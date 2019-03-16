@@ -16,16 +16,16 @@ class MiruApp extends StatelessWidget {
 Route generate(RouteSettings settings) {
     Route page;
     switch(settings.name) {
-      case "/":
-        page = new  PageRouteBuilder(
+      case '/':
+        page = PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new TestPage();
+            return TestPage();
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
-            return new FadeTransition(
+            return FadeTransition(
               opacity: animation,
-              child: new FadeTransition(
-                opacity: new Tween<double>(begin: 1.0, end: 0.0).animate(second),
+              child: FadeTransition(
+                opacity: Tween<double>(begin: 1.0, end: 0.0).animate(second),
                 child: child,
               ),
             );
@@ -33,16 +33,16 @@ Route generate(RouteSettings settings) {
         );
         break;
 
-      case "/home":
-        page = new PageRouteBuilder(
+      case '/home':
+        page = PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new HomePage();
+            return HomePage();
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
-            return new FadeTransition(
+            return FadeTransition(
               opacity: animation,
-              child: new FadeTransition(
-                opacity: new Tween<double>(begin: 1.0, end: 0.0).animate(second),
+              child: FadeTransition(
+                opacity: Tween<double>(begin: 1.0, end: 0.0).animate(second),
                 child: child,
               ),
             );
@@ -54,10 +54,10 @@ Route generate(RouteSettings settings) {
   }
 
   Route unKnownRoute(RouteSettings settings) {
-    return new PageRouteBuilder(
+    return PageRouteBuilder(
       pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
-        return new Container(
-          child:Text("Something borked!")
+        return Container(
+          child: const Text('Something borked!')
         );
       }
     );
@@ -65,10 +65,10 @@ Route generate(RouteSettings settings) {
 
   @override
   Widget build(BuildContext context) {
-    return new WidgetsApp(
+    return WidgetsApp(
       onGenerateRoute: generate,
       onUnknownRoute: unKnownRoute,
-      initialRoute: "/",
+      initialRoute: '/',
       color: MiruColors.purplePrimary
     );
   }

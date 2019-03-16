@@ -1,18 +1,19 @@
-import 'package:flutter/widgets.dart'; // Material design package
 import 'package:app/apis/kitsu.dart' as KitsuAPI; // Kitsu API methods
 import 'package:app/widgets/animewidgetsmall.dart'; // Anime widget
+import 'package:flutter/widgets.dart';
 
-class HomePage extends StatelessWidget  {
+class HorizontalAnimeList extends StatelessWidget  {
   final String title;
+  final future;
 
-  HomePage({Key key, this.title}) : super(key: key);
+  HorizontalAnimeList({this.title, this.future});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: KitsuAPI.getTranding(), // sets the getTranding method as the expected Future
-        builder: (BuildContext context, snapshot) {
+        future: future, // sets the getTranding method as the expected Future
+        builder: (context, snapshot) {
           if (snapshot.hasData) { //checks if the response returns valid data
             final List<AnimeWidgetSmall> animeList = [];
 
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget  {
             return Text(snapshot.error);
           }
 
-          return const Text('Loading...'); // If no errors and no data, assume still loading
+          return Text("Loading..."); // If no errors and no data, assume still loading
         }
       )
     );
