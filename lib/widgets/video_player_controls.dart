@@ -15,12 +15,10 @@ import 'package:video_player/video_player.dart';
 
 class MiruVideoPlayerControls extends StatefulWidget {
   MiruVideoPlayerControls({
-    @required this.backgroundColor,
-    @required this.iconColor,
+    @required this.title,
   });
 
-  final Color backgroundColor;
-  final Color iconColor;
+  final String title;
 
   @override
   State<StatefulWidget> createState() {
@@ -54,7 +52,7 @@ class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
         absorbing: _hideStuff,
         child: Column(
           children: <Widget>[
-            _buildTopBar(barHeight),
+            _buildTopBar(barHeight, widget.title),
             _buildHitArea(),
             _buildBottomBar(barHeight),
           ],
@@ -78,6 +76,15 @@ class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
 
   @override
   void didChangeDependencies() {
+    final _oldController = chewieController;
+    chewieController = ChewieController.of(context);
+    controller = chewieController.videoPlayerController;
+
+    if (_oldController != chewieController) {
+      _dispose();
+      _initialize();
+    }
+
     super.didChangeDependencies();
   }
 
@@ -229,6 +236,7 @@ class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
 
   AnimatedOpacity _buildTopBar(
     double barHeight,
+    String title
   ) {
     return AnimatedOpacity(
       opacity: _hideStuff ? 0.0 : 1.0,
@@ -257,7 +265,12 @@ class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
             height: barHeight,
             child: Row(
               children: <Widget>[
-                // TOP BAR CONTENT HERE
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                )
               ],
             ),
           ),
@@ -276,7 +289,32 @@ class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
     });
   }
 
+  Future<Null> _initialize() async {
+    controller.addListener(_updateState);
+
+    _updateState();
+
+    if ((controller.value != null && controller.value.isPlaying) ||
+        chewieController.autoPlay) {
+      _startHideTimer();
+    }
+
+    _initTimer = Timer(Duration(milliseconds: 200), () {
+      setState(() {
+        _hideStuff = false;
+      });
+    });
+  }
+
   Widget _buildProgressBar() {
+    ChewieProgressColors colors = chewieController.cupertinoProgressColors ??
+      ChewieProgressColors(
+        playedColor: Color(0xFFDB3A34),
+        handleColor: Color(0xFFC13931),
+        bufferedColor: Color(0xFF000000),
+        backgroundColor: Color(0x64F2EEEB),
+      );
+
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(right: 12.0),
@@ -288,13 +326,7 @@ class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
           onDragEnd: () {
             _startHideTimer();
           },
-          colors: chewieController.cupertinoProgressColors ??
-              ChewieProgressColors(
-                playedColor: Color(0xFFDB3A34),
-                handleColor: Color(0xFFC13931),
-                bufferedColor: Color(0xFF000000),
-                backgroundColor: Color(0x64F2EEEB),
-              ),
+          colors: colors,
         ),
       ),
     );
