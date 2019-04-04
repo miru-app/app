@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget  {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: KitsuAPI.getTranding(), // sets the getTranding method as the expected Future
+        future: KitsuAPI.getTrending(), // sets the getTranding method as the expected Future
         builder: (context, snapshot) {
           if (snapshot.hasData) { //checks if the response returns valid data
             final List<AnimeWidgetSmall> animeList = [];

@@ -16,7 +16,7 @@ Future<List<Anime>> search(String query) async {
   }
 }
 
-Future<List<Anime>> getTranding() async {
+Future<List<Anime>> getTrending() async {
   final response = await http.get('${config['kitsu_api_base']}/trending/anime');
   if (response.statusCode == 200) {
     // Parse the JSON
