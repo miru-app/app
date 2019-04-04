@@ -99,7 +99,7 @@ class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
         alignment: Alignment.bottomCenter,
         child: Container(
           decoration: BoxDecoration(
-          color: Colors.black,
+            color: Colors.black,
             gradient: LinearGradient(
               begin: FractionalOffset.topCenter,
               end: FractionalOffset.bottomCenter,

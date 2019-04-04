@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart'; // Material design package
 import 'package:app/apis/kitsu.dart' as KitsuAPI; // Kitsu API methods
-import 'package:app/widgets/animewidgetsmall.dart'; // Anime widget
+import 'package:app/widgets/anime_widget_small.dart'; // Anime widget
 
-class HomePage extends StatelessWidget  {
+class SearchPage extends StatelessWidget  {
   final String title;
 
-  HomePage({Key key, this.title}) : super(key: key);
+  SearchPage({Key key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

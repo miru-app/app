@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:app/widgets/notificationcard.dart';
+import 'package:app/widgets/notification_card.dart';
 import 'package:app/widgets/button.dart';
 import 'package:app/assets.dart';
 
-class TestPage extends StatelessWidget  {
+class SplashPage extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,8 @@
-/*
 import 'package:flutter/widgets.dart'; // Material design package
 //import 'package:flutter/rendering.dart';
 import 'package:app/assets.dart';
-import 'package:app/pages/testpage.dart';
-import 'package:app/pages/homepage.dart'; // Homepage widget
+import 'package:app/pages/splash.dart';
+import 'package:app/pages/home.dart'; // Homepage widget
 
 // Start the app
 void main() {
@@ -17,10 +16,10 @@ class MiruApp extends StatelessWidget {
 Route generate(RouteSettings settings) {
     Route page;
     switch(settings.name) {
-      case "/":
+      case "/": // Splash screen
         page = new  PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new TestPage();
+            return new SplashPage();
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
             return new FadeTransition(
@@ -34,7 +33,7 @@ Route generate(RouteSettings settings) {
         );
         break;
 
-      case "/home":
+      case "/home": // Main home page
         page = new PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
             return new HomePage();
@@ -74,8 +73,9 @@ Route generate(RouteSettings settings) {
     );
   }
 }
-*/
 
+
+/*
 import 'package:chewie/chewie.dart';
 import 'package:chewie/src/chewie_player.dart';
 import 'package:app/widgets/video_player_controls.dart';
@@ -146,3 +146,4 @@ class _ChewieDemoState extends State<ChewieDemo> {
     );
   }
 }
+*/
