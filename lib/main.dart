@@ -54,7 +54,7 @@ Route generate(RouteSettings settings) {
         case "/anime": // anime info page
         page = new PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new AnimePage();
+            return new AnimePage(anime: settings.arguments);
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
             return new FadeTransition(
@@ -87,7 +87,8 @@ Route generate(RouteSettings settings) {
       onGenerateRoute: generate,
       onUnknownRoute: unKnownRoute,
       initialRoute: "/",
-      color: MiruColors.purplePrimary
+      color: MiruColors.purplePrimary,
+      navigatorObservers: [new HeroController()],
     );
   }
 }

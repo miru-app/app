@@ -15,7 +15,7 @@ class AnimeWidgetSmall extends GestureDetector {
   @override
   Widget build(BuildContext context) => GestureDetector(
     onTap: () {
-      Navigator.pushNamed(context, '/anime');
+      Navigator.pushNamed(context, '/anime', arguments: this.anime);
     },
     child: Container(
       margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),

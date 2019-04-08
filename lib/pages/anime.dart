@@ -1,19 +1,44 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart'; // Material design package
-import 'package:app/apis/kitsu.dart' as kitsu; // Kitsu API methods
-import 'package:app/widgets/horizontal_anime_list.dart'; // Anime widget
+import 'package:app/assets.dart';
 
 class AnimePage extends StatelessWidget  {
-  final String title;
+  final dynamic anime;
 
-  AnimePage({Key key, this.title}) : super(key: key);
+  AnimePage({Key key, this.anime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: HorizontalAnimeList(
-        title: 'Anime here',
-            future: kitsu.getTrending()
+    return ListView(
+      children: <Widget>[
+        Container(
+          color: MiruColors.pinkPrimary,
+          child: Text(this.anime.title, style: MiruText.textHeading)
+        ),
+        Container(
+          width: 113,
+          height: 167,
+          margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(7)),
+            child: Hero(
+              tag: this.anime.id,
+              child: CachedNetworkImage(
+                width: 113,
+                height: 167,
+                fit: BoxFit.cover,
+                imageUrl: this.anime.posterUrl,
+                placeholder: (BuildContext context, String url) => Container(
+                  decoration: BoxDecoration(
+                    color: MiruColors.purplePrimary,
+                    borderRadius: const BorderRadius.all(Radius.circular(7))
+                  )
+                ),
+              )
+            )
           )
+        )
+      ],
     );
   }
 }
