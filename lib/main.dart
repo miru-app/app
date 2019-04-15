@@ -1,14 +1,14 @@
 import 'package:flutter/widgets.dart'; // Material design package
-//import 'package:flutter/rendering.dart';
+import 'package:flutter/rendering.dart';
 import 'package:app/assets.dart';
-import 'package:app/pages/splash.dart';
+import 'package:app/pages/testhome.dart';
 import 'package:app/pages/home.dart'; // Homepage widget
-import 'package:app/pages/anime.dart';
+import 'package:app/pages/testanime.dart';
 
 // Start the app
 void main() {
   // Run the app
-  //SdebugPaintSizeEnabled=true;
+  //debugPaintSizeEnabled=true;
   runApp(MiruApp());
 }
 
@@ -17,10 +17,10 @@ class MiruApp extends StatelessWidget {
 Route generate(RouteSettings settings) {
     Route page;
     switch(settings.name) {
-      case "/": // Splash screen
+      case "/": // Splash screen - currently test home page
         page = new  PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new SplashPage();
+            return new THomePage();
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
             return new FadeTransition(
@@ -54,7 +54,7 @@ Route generate(RouteSettings settings) {
         case "/anime": // anime info page
         page = new PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new AnimePage(anime: settings.arguments);
+            return new TAnimePage(/*anime: settings.arguments*/);
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
             return new FadeTransition(

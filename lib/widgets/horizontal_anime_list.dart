@@ -33,13 +33,14 @@ class HorizontalAnimeList extends StatelessWidget  {
                       margin: EdgeInsets.fromLTRB(10, 30, 0, 5),
                       child: const Text('Trending', style: MiruText.textHeading),
                     ),
-                    Container(
-                      height: 167,
-                      child: ListView(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        scrollDirection: Axis.horizontal,
-                        children: animeList,
-                      )
+                    Row(
+                      children: <Widget>[
+                        ListView(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          scrollDirection: Axis.horizontal,
+                          children: animeList,
+                        )
+                      ]
                     )
                   ]
                 )

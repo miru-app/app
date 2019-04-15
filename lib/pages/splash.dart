@@ -10,29 +10,13 @@ class SplashPage extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: MiruColors.purplePrimary,
+      color: MiruColors.bg,
       child: Column(
         children: <Widget>[
-          NotificationCard(
-            title: "Welcome!",
-            text: "I hope our app fills your anime needs. Lets us know what you think of it on our website."
-          ),
           HorizontalAnimeList(
             title: 'Trending',
             future: kitsu.getTrending()
           ),
-          Button(
-            text: "Press F to pay respects",
-            onTap: () {
-              print("F pressed!");
-            }
-          ),
-          Button(
-            text: "Home button",
-            onTap: () {
-              Navigator.pushNamed(context, "/home");
-            }
-          )
         ]
       )
     );

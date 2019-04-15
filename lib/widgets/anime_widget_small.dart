@@ -19,23 +19,28 @@ class AnimeWidgetSmall extends GestureDetector {
     },
     child: Container(
       margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(7)),
-        child: Hero(
-          tag: this.anime.id,
-          child: CachedNetworkImage(
-            width: 113,
-            height: 167,
-            fit: BoxFit.cover,
-            imageUrl: this.anime.posterUrl,
-            placeholder: (BuildContext context, String url) => Container(
-              decoration: BoxDecoration(
-                color: MiruColors.purplePrimary,
-                borderRadius: const BorderRadius.all(Radius.circular(7))
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(7)),
+            child: Hero(
+              tag: this.anime.id,
+              child: CachedNetworkImage(
+                width: 113,
+                height: 167,
+                fit: BoxFit.cover,
+                imageUrl: this.anime.posterUrl,
+                placeholder: (BuildContext context, String url) => Container(
+                  decoration: BoxDecoration(
+                    color: MiruColors.purplePrimary,
+                    borderRadius: const BorderRadius.all(Radius.circular(7))
+                  )
+                ),
               )
-            ),
-          )
-        )
+            )
+          ),
+          Text(this.anime.title, style: MiruText.textDefault)
+        ]
       )
     )
   );
