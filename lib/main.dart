@@ -4,6 +4,7 @@ import 'package:app/assets.dart';
 import 'package:app/pages/testhome.dart';
 import 'package:app/pages/home.dart'; // Homepage widget
 import 'package:app/pages/testanime.dart';
+import 'package:app/pages/testsearch.dart';
 
 // Start the app
 void main() {
@@ -34,6 +35,23 @@ Route generate(RouteSettings settings) {
         );
         break;
 
+      case "/search": // search bar view
+        page = new  PageRouteBuilder(
+          pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+            return new TSearchPage();
+          },
+          transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
+            return new FadeTransition(
+              opacity: animation,
+              child: new FadeTransition(
+                opacity: new Tween<double>(begin: 1.0, end: 0.0).animate(second),
+                child: child,
+              ),
+            );
+          }
+        );
+        break;
+      
       case "/home": // Main home page
         page = new PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {

@@ -11,7 +11,9 @@ class MiruColors {
 
   static const Color textEmphasis = Color.fromARGB(255, 255, 255, 255);
   static const Color textParagraph = Color.fromARGB(255, 162, 162, 180);
+  static const Color textGray = Color.fromARGB(255, 173, 173, 201);
   static const Color primaryColor = Color.fromARGB(255, 158, 158, 255);
+  static const Color bg2 = Color.fromARGB(255, 48, 48, 63);
 }
 
 class MiruText {
@@ -20,9 +22,19 @@ class MiruText {
     fontWeight: FontWeight.normal,
     fontSize: 15
   );
+  static const TextStyle textInactive = TextStyle(
+    color: MiruColors.textParagraph,
+    fontWeight: FontWeight.normal,
+    fontSize: 15
+  );
   static const TextStyle textEmphasis = TextStyle(
     color: MiruColors.textEmphasis,
     fontWeight: FontWeight.normal,
+    fontSize: 15
+  );
+  static const TextStyle textSmallTitle = TextStyle(
+    color: MiruColors.textEmphasis,
+    fontWeight: FontWeight.w500,
     fontSize: 15
   );
   static const TextStyle textButton = TextStyle(
