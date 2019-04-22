@@ -60,13 +60,64 @@ class TAnimePage extends StatelessWidget  {
       ),
     );
 
-    return Container( // page itself
+  final dynamic info = Container(
+    margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Rating', style: MiruText.textMuted),
+            Text('84%', style: MiruText.textHeading)
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Rating rank', style: MiruText.textMuted),
+            Text('#28', style: MiruText.textHeading)
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Popularity', style: MiruText.textMuted),
+            Text('#21', style: MiruText.textHeading)
+          ],
+        )
+      ]
+    )
+  );
+
+  final dynamic summary = Container(
+    margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+          child: Text('Summary', style: MiruText.textHeading)
+        ),
+        Text('That jumbled piece of architecture, that cacophony of hissing steam and creaking joints, with smoke billowing from it as it moves on its own... That castle is home to the magnificent wizard Howl, infamous for both his magical prowess and for being a womanizer—or so the rumor goes in Sophie Hatter\'s small town. Sophie, as the plain daughter of a hatmaker, does not expect much from her future and is content with working hard in the shop. However, Sophie\'s simple life takes a turn for the exciting when she is ensnared in a disturbing situation, and the mysterious wizard appears to rescue her. Unfortunately, this encounter, brief as it may be, spurs the vain and vengeful Witch of the Waste—in a fit of jealousy caused by a past discord with Howl—to put a curse on the maiden, turning her into an old woman. In an endeavor to return to normal, Sophie must accompany Howl and a myriad of eccentric companions—ranging from a powerful fire demon to a hopping scarecrow—in his living castle, on a dangerous adventure as a raging war tears their kingdom apart. [Written by MAL Rewrite]',
+        style: MiruText.textDefault,
+        maxLines: 5),
+        Text('Read more', style: MiruText.textButton) // TODO not show for smaller than 5 lines
+      ],
+    )
+  );
+
+   return Container( // page itself
       color: MiruColors.bg,
-      child: ListView( // list so the page can scroll
-        children: <Widget>[
-          top,
-          infoCard
-        ]
+      child: SafeArea( 
+        child: ListView( // list so the page can scroll
+          children: <Widget>[
+            top,
+            infoCard,
+            info,
+            summary
+          ]
+        )
       )
     );
 

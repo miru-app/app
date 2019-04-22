@@ -271,23 +271,25 @@ class THomePage extends StatelessWidget  {
       
     return Container( // page itself
       color: MiruColors.bg,
-      child: ListView( // list so the page can scroll
-        children: <Widget>[
-          topBar,
-          Hero(
-            tag: 'search',
-            child: search
-          ),
-          unfinished,
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
-            child: cardListBig
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
-            child: cardlist
-          )
-        ]
+      child: SafeArea(
+        child: ListView( // list so the page can scroll
+          children: <Widget>[
+            topBar,
+            Hero(
+              tag: 'search',
+              child: search
+            ),
+            unfinished,
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+              child: cardListBig
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+              child: cardlist
+            )
+          ]
+        )
       )
     );
 

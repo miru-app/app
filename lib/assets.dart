@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart'; // TODO add icons
 
 class MiruColors {
   static const Color purplePrimary = Color.fromARGB(255, 34, 30, 58);
@@ -17,7 +17,7 @@ class MiruColors {
 }
 
 class MiruText {
-  static const TextStyle textDefault = TextStyle(
+  static const TextStyle textDefault = TextStyle( // TODO add open sans font
     color: MiruColors.textParagraph,
     fontWeight: FontWeight.normal,
     fontSize: 15
@@ -29,6 +29,11 @@ class MiruText {
   );
   static const TextStyle textEmphasis = TextStyle(
     color: MiruColors.textEmphasis,
+    fontWeight: FontWeight.normal,
+    fontSize: 15
+  );
+  static const TextStyle textMuted = TextStyle(
+    color: MiruColors.textGray,
     fontWeight: FontWeight.normal,
     fontSize: 15
   );
