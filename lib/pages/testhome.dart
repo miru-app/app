@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart'; // Material design package
 import 'package:app/assets.dart';
+import 'package:app/apis/kitsu.dart' as kitsu; // Kitsu API methods
+import 'package:app/widgets/horizontal_anime_list_large.dart'; // Anime widget
 
 class THomePage extends StatelessWidget  {
   final String title;
@@ -111,6 +113,7 @@ class THomePage extends StatelessWidget  {
       )
     );
   	
+    /*
     final Container cardBig = Container(
       child: GestureDetector( // card section - CARD -------------------
         onTap: () {
@@ -150,6 +153,8 @@ class THomePage extends StatelessWidget  {
         )
       )
     );
+    */
+
     final dynamic topBar = Container(
       margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
       child: Row(
@@ -257,14 +262,16 @@ class THomePage extends StatelessWidget  {
             ),
             Container(
               height: 313, //fixed height, card height + 2 lines of text
-              child: 
-              ListView(
+              child: HorizontalAnimeListLarge(
+                future: kitsu.getTrending()
+              )
+              /*ListView(
                 padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
                   cardBig, cardBig, cardBig //content
                 ]
-              )
+              )*/
             )
           ]
         );

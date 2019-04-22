@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart'; // Material design package
 import 'package:app/assets.dart';
+import 'package:app/anime.dart'; // Custom anime classes
 
 class TAnimePage extends StatelessWidget  {
+  final Anime anime;
 
-  TAnimePage({Key key}) : super(key: key);
+  TAnimePage({Key key, this.anime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class TAnimePage extends StatelessWidget  {
         borderRadius: BorderRadius.all(Radius.circular(10)),
         color: MiruColors.pinkPrimary,
         image: DecorationImage(
-          image: CachedNetworkImageProvider("https://media.kitsu.io/anime/cover_images/395/original.png?1519181074"),
+          image: CachedNetworkImageProvider(this.anime.coverUrl),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(MiruColors.blackOverlay, BlendMode.srcATop)
         ),
@@ -46,14 +48,14 @@ class TAnimePage extends StatelessWidget  {
               )
             )
           ),
-          Text("Howl's Moving Castle", style: MiruText.textHeading),
+          Text(this.anime.title, style: MiruText.textHeading),
           Row(
             children: <Widget>[
-              Text('164 minutes', style: MiruText.textEmphasis),
+              Text('${this.anime.episodeLength} minutes', style: MiruText.textEmphasis),
               Text(' - ', style: MiruText.textEmphasis), // TODO make these opaque dots
-              Text('movie', style: MiruText.textEmphasis),
+              Text(this.anime.showType, style: MiruText.textEmphasis),
               Text(' - ', style: MiruText.textEmphasis), // TODO make these opaque dots
-              Text('2004', style: MiruText.textEmphasis)
+              Text(this.anime.startDate, style: MiruText.textEmphasis) // TODO make this change based on show type (movies should only be "endDate" but tv shows should be "startDate - endDate")
             ]
           )
         ],
@@ -69,21 +71,21 @@ class TAnimePage extends StatelessWidget  {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('Rating', style: MiruText.textMuted),
-            Text('84%', style: MiruText.textHeading)
+            Text('${this.anime.averageRating}%', style: MiruText.textHeading)
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('Rating rank', style: MiruText.textMuted),
-            Text('#28', style: MiruText.textHeading)
+            Text('#${this.anime.ratingRank}', style: MiruText.textHeading)
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('Popularity', style: MiruText.textMuted),
-            Text('#21', style: MiruText.textHeading)
+            Text('#${this.anime.popularityRank}', style: MiruText.textHeading)
           ],
         )
       ]
@@ -99,9 +101,11 @@ class TAnimePage extends StatelessWidget  {
           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
           child: Text('Summary', style: MiruText.textHeading)
         ),
-        Text('That jumbled piece of architecture, that cacophony of hissing steam and creaking joints, with smoke billowing from it as it moves on its own... That castle is home to the magnificent wizard Howl, infamous for both his magical prowess and for being a womanizer—or so the rumor goes in Sophie Hatter\'s small town. Sophie, as the plain daughter of a hatmaker, does not expect much from her future and is content with working hard in the shop. However, Sophie\'s simple life takes a turn for the exciting when she is ensnared in a disturbing situation, and the mysterious wizard appears to rescue her. Unfortunately, this encounter, brief as it may be, spurs the vain and vengeful Witch of the Waste—in a fit of jealousy caused by a past discord with Howl—to put a curse on the maiden, turning her into an old woman. In an endeavor to return to normal, Sophie must accompany Howl and a myriad of eccentric companions—ranging from a powerful fire demon to a hopping scarecrow—in his living castle, on a dangerous adventure as a raging war tears their kingdom apart. [Written by MAL Rewrite]',
-        style: MiruText.textDefault,
-        maxLines: 5),
+        Text(
+          this.anime.synopsis,
+          style: MiruText.textDefault,
+          maxLines: 5
+        ),
         Text('Read more', style: MiruText.textButton) // TODO not show for smaller than 5 lines
       ],
     )

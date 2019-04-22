@@ -36,7 +36,7 @@ class TSearchPage extends StatelessWidget  {
                   )
                 )
               )
-              ),
+            ),
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, '/');

@@ -1,6 +1,10 @@
 class Anime {
   final int id;
   final String title;
+  final int averageRating;
+  final int popularityRank;
+  final int ratingRank;
+  final String rating;
   final String status;
   final String synopsis;
   final String startDate;
@@ -10,8 +14,10 @@ class Anime {
   final int releasedCount;
   final String posterUrl;
   final String coverUrl;
+  final String showType;
+  final int episodeLength;
 
-  Anime({this.id, this.title, this.status, this.synopsis, this.startDate, this.endDate, this.trailerId, this.episodeCount, this.releasedCount, this.posterUrl, this.coverUrl});
+  Anime({this.id, this.title, this.averageRating, this.popularityRank, this.ratingRank, this.rating,  this.status, this.synopsis, this.startDate, this.endDate, this.trailerId, this.episodeCount, this.releasedCount, this.posterUrl, this.coverUrl, this.showType, this.episodeLength});
 
   factory Anime.fromJson(Map<String, dynamic> json) {
     int releasedCount;
@@ -21,8 +27,8 @@ class Anime {
     if (
       json['attributes']['episodeLength'] == null ||
       json['attributes']['totalLength'] == null ||
-      json['attributes']['episodeLength'] == 0 ||
-      json['attributes']['totalLength'] == 0
+      json['attributes']['episodeLength'] <= 0 ||
+      json['attributes']['totalLength'] <= 0
     ) {
       releasedCount = 0;
     } else {
@@ -45,6 +51,10 @@ class Anime {
     return Anime(
       id: int.parse(json['id']), // Kitsu why the hell do you return the ID as a string when it's a number
       title: json['attributes']['canonicalTitle'],
+      averageRating: double.parse(json['attributes']['averageRating']).ceil(),
+      popularityRank: json['attributes']['popularityRank'],
+      ratingRank: json['attributes']['ratingRank'],
+      rating: json['attributes']['rating'],
       status: json['attributes']['status'],
       synopsis: json['attributes']['synopsis'],
       startDate: json['attributes']['startDate'],
@@ -54,6 +64,8 @@ class Anime {
       releasedCount: releasedCount,
       posterUrl: posterUrl,
       coverUrl: coverUrl,
+      showType: json['attributes']['showType'],
+      episodeLength: json['attributes']['episodeLength']
     );
   }
 

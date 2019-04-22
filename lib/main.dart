@@ -72,7 +72,7 @@ Route generate(RouteSettings settings) {
         case "/anime": // anime info page
         page = new PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new TAnimePage(/*anime: settings.arguments*/);
+            return new TAnimePage(anime: settings.arguments);
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
             return new FadeTransition(
