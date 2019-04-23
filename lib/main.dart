@@ -1,10 +1,9 @@
-import 'package:flutter/widgets.dart'; // Material design package
+import 'package:flutter/widgets.dart';
 import 'package:flutter/rendering.dart';
 import 'package:app/assets.dart';
-import 'package:app/pages/testhome.dart';
-import 'package:app/pages/home.dart'; // Homepage widget
-import 'package:app/pages/testanime.dart';
-import 'package:app/pages/testsearch.dart';
+import 'package:app/pages/home.dart';
+import 'package:app/pages/anime.dart';
+import 'package:app/pages/search.dart';
 
 // Start the app
 void main() {
@@ -18,10 +17,10 @@ class MiruApp extends StatelessWidget {
 Route generate(RouteSettings settings) {
     Route page;
     switch(settings.name) {
-      case "/": // Splash screen - currently test home page
+      case "/": // home
         page = new  PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new THomePage();
+            return new HomePage();
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
             return new FadeTransition(
@@ -38,24 +37,7 @@ Route generate(RouteSettings settings) {
       case "/search": // search bar view
         page = new  PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new TSearchPage();
-          },
-          transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
-            return new FadeTransition(
-              opacity: animation,
-              child: new FadeTransition(
-                opacity: new Tween<double>(begin: 1.0, end: 0.0).animate(second),
-                child: child,
-              ),
-            );
-          }
-        );
-        break;
-      
-      case "/home": // Main home page
-        page = new PageRouteBuilder(
-          pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new HomePage();
+            return new SearchPage();
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
             return new FadeTransition(
@@ -72,7 +54,7 @@ Route generate(RouteSettings settings) {
         case "/anime": // anime info page
         page = new PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new TAnimePage(anime: settings.arguments);
+            return new AnimePage(anime: settings.arguments);
           },
           transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
             return new FadeTransition(

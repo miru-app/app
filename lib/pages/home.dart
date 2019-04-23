@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart'; // Material design package
-import 'package:app/apis/kitsu.dart' as KitsuAPI; // Kitsu API methods
-import 'package:app/widgets/anime_widget_small.dart';
-import 'package:open_iconic_flutter/open_iconic_flutter.dart'; // Anime widget
+import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
+import 'package:app/apis/kitsu.dart' as kitsu; // Kitsu API methods
+import 'package:app/widgets/horizontal_anime_list.dart';
+import 'package:app/widgets/card_section.dart';
 
 class HomePage extends StatelessWidget  {
   final String title;
@@ -12,92 +11,94 @@ class HomePage extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: new BoxDecoration(
-        border: new Border.all(color: Colors.blueAccent)
-      ),
-      //color: MiruColors.purplePrimary,
-      child: Column(
+
+    final dynamic topBar = Container(
+      margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
+      child: Row(
         children: <Widget>[
-          new Text("hello"),
-          new Align(
-            alignment: Alignment.bottomCenter,
-            child: new Text("Hair cut"),
+          Expanded(
+            child: Text("Miru", style: MiruText.textSmallTitle)
           ),
+          Text("ICON"),
+          Text("ICON")
         ]
       )
     );
-    /*
-    return Container(
-      child: FutureBuilder(
-        future: KitsuAPI.getTrending(), // sets the getTranding method as the expected Future
-        builder: (context, snapshot) {
-          if (snapshot.hasData) { //checks if the response returns valid data
-            final List<AnimeWidgetSmall> animeList = [];
 
-            // Add the widgets to the list
-            snapshot.data.forEach((anime) {
-              animeList.add(AnimeWidgetSmall(anime: anime));
-            });
-
-            // Building the basic UI
-            return Container(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: animeList,
-              ),
-            );
-          } else if (snapshot.hasError) { //checks if the response throws an error
-            return Text(snapshot.error);
-          }
-
-          return Text("Loading..."); // If no errors and no data, assume still loading
-        }
+    final dynamic search = GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/search');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          color: MiruColors.bg2
+        ),
+        margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: EdgeInsets.all(15),
+        child: Row(
+          children: <Widget>[
+            Text('ICON'),
+            Expanded(
+              child: Text('Search...', style: MiruText.textInactive)
+            )
+          ],
+        )
       )
-    );*/
+    );
+      
+    return Container( // page itself
+      color: MiruColors.bg,
+      child: SafeArea(
+        child: ListView( // list so the page can scroll
+          children: <Widget>[
+            topBar,
+            Hero(
+              tag: 'search',
+              child: search
+            ),
+            CardSection(
+              title: 'Unfinished',
+              actionText: 'see all',
+              onTap: () => {},
+              child: Container(
+                height: HorizontalAnimeListWatched.height,
+                child: HorizontalAnimeListWatched(
+                  future: kitsu.getTrending()
+                )
+              )
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+              child: CardSection(
+                title: 'Popular',
+                actionText: 'see all',
+                onTap: () => {},
+                child: Container(
+                  height: HorizontalAnimeListLarge.height,
+                  child: HorizontalAnimeListLarge(
+                    future: kitsu.getTrending()
+                  )
+                )
+              )
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+              child: CardSection(
+                title: 'Recent',
+                actionText: 'see all',
+                onTap: () => {},
+                child: Container(
+                  height: HorizontalAnimeList.height,
+                  child: HorizontalAnimeList(
+                    future: kitsu.getTrending()
+                  )
+                )
+              )
+            )
+          ]
+        )
+      )
+    );
   }
-}
-
-Container _buildNavigationBar() {
-  return Container(
-    alignment: Alignment.bottomCenter,
-    decoration: new BoxDecoration(
-      border: new Border.all(color: Colors.redAccent)
-    ),
-    //color: Color(0xFF1E1B34),
-    height: 10.0,
-    margin: EdgeInsets.only(
-      top: 5.0,
-      right: 5.0,
-      left: 5.0,
-    ),
-    child: Row(
-      children: <Widget>[
-        _buildHomeButton(),
-        //_buildSearchButton(),
-        //_buildButton3(),
-        //_buildButton4()
-      ],
-    ),
-  );
-}
-
-Widget _buildHomeButton() {
-  return Container(
-    decoration: new BoxDecoration(
-      border: new Border.all(color: Colors.greenAccent)
-    ),
-    height: 48.0,
-    width: 150.0,
-    //color: Colors.transparent,
-    padding: EdgeInsets.only(
-      left: 6.0,
-      right: 6.0,
-    ),
-    child: Icon(
-      OpenIconicIcons.home,
-      color: MiruColors.iconColor,
-      size: 32.0,
-    ),
-  );
 }

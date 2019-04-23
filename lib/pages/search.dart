@@ -1,6 +1,5 @@
-import 'package:flutter/widgets.dart'; // Material design package
-import 'package:app/apis/kitsu.dart' as KitsuAPI; // Kitsu API methods
-import 'package:app/widgets/anime_widget_small.dart'; // Anime widget
+import 'package:flutter/widgets.dart';
+import 'package:app/assets.dart';
 
 class SearchPage extends StatelessWidget  {
   final String title;
@@ -9,32 +8,83 @@ class SearchPage extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: KitsuAPI.getTrending(), // sets the getTranding method as the expected Future
-        builder: (context, snapshot) {
-          if (snapshot.hasData) { //checks if the response returns valid data
-            final List<AnimeWidgetSmall> animeList = [];
 
-            // Add the widgets to the list
-            snapshot.data.forEach((anime) {
-              animeList.add(AnimeWidgetSmall(anime: anime));
-            });
+    final dynamic search = Container(
+        margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/searchresults');
+              },
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    color: MiruColors.bg2
+                  ),
+                  padding: EdgeInsets.all(15),
+                  child: Row(
+                    children: <Widget>[
+                      Text('ICON'),
+                      Expanded(
+                        child: Text('Search...', style: MiruText.textInactive)
+                      )
+                    ],
+                  )
+                )
+              )
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/');
+              },
+              child:Padding(
+                padding: EdgeInsets.all(15),
+                child: Text('Cancel', style: MiruText.textButton)
+              )
+            )
+          ]
+        )
+    );
 
-            // Building the basic UI
-            return Container(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: animeList,
-              ),
-            );
-          } else if (snapshot.hasError) { //checks if the response throws an error
-            return Text(snapshot.error);
-          }
-
-          return Text("Loading..."); // If no errors and no data, assume still loading
-        }
+    final dynamic recent = Container(
+      margin: EdgeInsets.fromLTRB(20, 0, 0, 20),
+      constraints: BoxConstraints.expand(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Recent searches", style: MiruText.textSmallTitle),
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: Text("A silent voice", style: MiruText.textDefault),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: Text("Kimi no na wa", style: MiruText.textDefault),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: Text("Is this search thingy even working?", style: MiruText.textDefault),
+          )
+        ],
       )
     );
+
+    return Container( // page itself
+      color: MiruColors.bg,
+      child: SafeArea( 
+        child: Column( // not a list, cuz its a single screen
+          children: <Widget>[
+            Hero(
+              tag: 'search',
+              child: search
+            ),
+            Expanded(child: recent),
+          ]
+        )
+      )
+    );
+
   }
 }

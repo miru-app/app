@@ -1,14 +1,13 @@
 import 'dart:async';
-import 'package:app/widgets/anime_widget_small.dart'; // Anime widget
+import 'package:app/widgets/anime_card.dart'; // Anime widget
 import 'package:app/anime.dart';
 import 'package:flutter/widgets.dart';
-import 'package:app/assets.dart';
 
 class HorizontalAnimeList extends StatelessWidget  {
-  final String title;
   final Future<dynamic> future;
+  static double height = AnimeCard.height;
 
-  HorizontalAnimeList({this.title, this.future});
+  HorizontalAnimeList({this.future});
 
   @override
   Widget build(BuildContext context) {
@@ -17,39 +16,101 @@ class HorizontalAnimeList extends StatelessWidget  {
         future: future, // sets the getTranding method as the expected Future
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) { //checks if the response returns valid data
-            final List<AnimeWidgetSmall> animeList = [];
+            final List<AnimeCard> animeList = [];
 
             // Add the widgets to the list
             snapshot.data.forEach((Anime anime) {
-              animeList.add(AnimeWidgetSmall(anime: anime));
+              animeList.add(AnimeCard(anime: anime));
             });
 
             // Building the basic UI
-            return Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.fromLTRB(10, 30, 0, 5),
-                      child: const Text('Trending', style: MiruText.textHeading),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        ListView(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                          scrollDirection: Axis.horizontal,
-                          children: animeList,
-                        )
-                      ]
-                    )
-                  ]
-                )
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              scrollDirection: Axis.horizontal,
+              children: animeList
             );
           } else if (snapshot.hasError) { //checks if the response throws an error
             return Text(snapshot.error);
           }
 
           return const Text('Loading...'); // If no errors and no data, assume still loading
+          // TODO placeholders
+        }
+      )
+    );
+  }
+}
+
+class HorizontalAnimeListLarge extends StatelessWidget  {
+  final Future<dynamic> future;
+  static double height = AnimeCardLarge.height;
+
+  HorizontalAnimeListLarge({this.future});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FutureBuilder<dynamic>(
+        future: future, // sets the getTranding method as the expected Future
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) { //checks if the response returns valid data
+            final List<AnimeCardLarge> animeList = [];
+
+            // Add the widgets to the list
+            snapshot.data.forEach((Anime anime) {
+              animeList.add(AnimeCardLarge(anime: anime));
+            });
+
+            // Building the basic UI
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              scrollDirection: Axis.horizontal,
+              children: animeList
+            );
+          } else if (snapshot.hasError) { //checks if the response throws an error
+            return Text(snapshot.error);
+          }
+
+          return const Text('Loading...'); // If no errors and no data, assume still loading
+          // TODO placeholders
+        }
+      )
+    );
+  }
+}
+
+class HorizontalAnimeListWatched extends StatelessWidget  {
+  final Future<dynamic> future;
+  static double height = AnimeCardWatched.height;
+
+  HorizontalAnimeListWatched({this.future});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FutureBuilder<dynamic>(
+        future: future, // sets the getTranding method as the expected Future
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) { //checks if the response returns valid data
+            final List<AnimeCardWatched> animeList = [];
+
+            // Add the widgets to the list
+            snapshot.data.forEach((Anime anime) {
+              animeList.add(AnimeCardWatched(anime: anime, percentageWatched: .42));
+            });
+
+            // Building the basic UI
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              scrollDirection: Axis.horizontal,
+              children: animeList
+            );
+          } else if (snapshot.hasError) { //checks if the response throws an error
+            return Text(snapshot.error);
+          }
+
+          return const Text('Loading...'); // If no errors and no data, assume still loading
+          // TODO placeholders
         }
       )
     );
