@@ -73,6 +73,7 @@ class AnimeCardLarge extends AnimeCard {
                     width: 181,
                     height: 257,
                     fit: BoxFit.cover,
+                    imageUrl: this.anime.posterUrl,
                     placeholder: (BuildContext context, String url) => AnimeCardPlaceholderLarge(),
                   )
               ),
