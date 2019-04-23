@@ -30,7 +30,7 @@ class AnimePage extends StatelessWidget  {
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
-        color: MiruColors.pinkPrimary,
+        color: MiruColors.bg2,
         image: DecorationImage(
           image: CachedNetworkImageProvider(this.anime.coverUrl),
           fit: BoxFit.cover,
