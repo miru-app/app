@@ -1,16 +1,21 @@
+import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
-import 'package:app/anime.dart'; // Custom anime classes
+import 'package:app/anime.dart';
+import 'package:app/widgets/video_player.dart';
+import 'package:app/apis/miru.dart' as MiruAPI;
 
 class AnimePage extends StatelessWidget  {
   final Anime anime;
+  MiruVideoPlayerWidget videoPlayer;
+  Visibility playerContainer;
 
   AnimePage({Key key, this.anime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
+
     final dynamic top = Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Row(
@@ -43,7 +48,19 @@ class AnimePage extends StatelessWidget  {
           Expanded(
             child: Center(
               child: Container(
-                child: Text('Play') // TODO add play button
+                child: GestureDetector(
+                  onTap: () async {
+                    final streams = await MiruAPI.getAnimeStreams(41024, 1);
+
+                    playerContainer = Visibility(
+                      child: MiruVideoPlayerWidget(
+                        url: streams[0].file,
+                        title: 'Tensei Shitara Slime Datta Ken - 01'
+                      ),
+                    );
+                  },
+                  child: Text('Play') // TODO add play button
+                )
               )
             )
           ),

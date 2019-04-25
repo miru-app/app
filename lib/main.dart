@@ -93,14 +93,9 @@ Route generate(RouteSettings settings) {
   }
 }
 
-
 /*
-import 'package:chewie/chewie.dart';
-import 'package:chewie/src/chewie_player.dart';
-import 'package:app/widgets/video_player_controls.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'package:app/widgets/video_player.dart';
 
 void main() {
   runApp(
@@ -108,54 +103,26 @@ void main() {
   );
 }
 
-class ChewieDemo extends StatefulWidget {
+class ChewieDemo extends StatelessWidget {
   ChewieDemo({this.title = 'Video Player Test'});
 
   final String title;
 
   @override
-  State<StatefulWidget> createState() {
-    return _ChewieDemoState();
-  }
-}
-
-class _ChewieDemoState extends State<ChewieDemo> {
-  VideoPlayerController _videoPlayerController;
-  ChewieController _chewieController;
-
-  @override
-  void initState() {
-    super.initState();
-    _videoPlayerController = VideoPlayerController.network(
-        'https://twist.moe/anime/tenseishitaraslimedattaken/[HorribleSubs] Tensei Shitara Slime Datta Ken - 01 [1080p].mp4');
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController,
-      autoPlay: true,
-      customControls: MiruVideoPlayerControls(title: 'Tensei Shitara Slime Datta Ken - 01')
-    );
-  }
-
-  @override
-  void dispose() {
-    _videoPlayerController.dispose();
-    _chewieController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: widget.title,
+      title: title,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(title),
         ),
         body: Column(
           children: <Widget>[
             Expanded(
               child: Center(
-                child: Chewie(
-                  controller: _chewieController,
+                child: MiruVideoPlayerWidget(
+                  url: 'https://twist.moe/anime/tenseishitaraslimedattaken/[HorribleSubs] Tensei Shitara Slime Datta Ken - 01 [1080p].mp4',
+                  title: 'Tensei Shitara Slime Datta Ken - 01'
                 ),
               ),
             ),
