@@ -1,7 +1,6 @@
 import 'package:app/widgets/anime_details_card.dart';
 import 'package:app/widgets/anime_info.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
 import 'package:app/anime.dart';
@@ -25,12 +24,16 @@ class AnimePage extends StatelessWidget  {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Expanded(
-                    child: Text('back') // TODO add back icon
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Icon(MiruIcons.folder, color: MiruColors.textEmphasis)
+                    )
                   ),
-                  Text('Icon'), // TODO add plus icon
-                  Text('Icon') // TODO add like icon
+                  Icon(MiruIcons.folder_add, color: MiruColors.textEmphasis),
+                  Icon(MiruIcons.heart, color: MiruColors.textEmphasis)
                 ],
               )
             ),
