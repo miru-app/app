@@ -1,4 +1,5 @@
 import 'package:app/widgets/anime_details_card.dart';
+import 'package:app/widgets/anime_episode.dart';
 import 'package:app/widgets/anime_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -65,7 +66,23 @@ class AnimePage extends StatelessWidget  {
                 ]
               )
             ),
-            AnimeSummary(text: this.anime.synopsis)
+            AnimeSummary(text: this.anime.synopsis),
+            AnimeEpisodeSection(
+              episodes: <Widget>[
+                Episode(
+                  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SIPI_Jelly_Beans_4.1.07.tiff/lossy-page1-256px-SIPI_Jelly_Beans_4.1.07.tiff.jpg',
+                  number: 1,
+                  title: 'Once upon a time.',
+                  onTap: () { print('hello world'); }
+                ),
+                Episode(
+                  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SIPI_Jelly_Beans_4.1.07.tiff/lossy-page1-256px-SIPI_Jelly_Beans_4.1.07.tiff.jpg',
+                  number: 2,
+                  title: 'There was an octopus named RedDucks',
+                  onTap: () { print('yes, your pfp is an octopus'); }
+                )
+              ],
+            )
           ]
         )
       )
