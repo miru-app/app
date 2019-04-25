@@ -19,8 +19,8 @@ class HomePage extends StatelessWidget  {
           Expanded(
             child: Text("Miru", style: MiruText.textSmallTitle)
           ),
-          Text("ICON"),
-          Text("ICON")
+          Icon(MiruIcons.folder, color: MiruColors.textEmphasis),
+          Icon(MiruIcons.settings, color: MiruColors.textEmphasis)
         ]
       )
     );
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget  {
         padding: EdgeInsets.all(15),
         child: Row(
           children: <Widget>[
-            Text('ICON'),
+            Icon(MiruIcons.search, color: MiruColors.textEmphasis),
             Expanded(
               child: Text('Search...', style: MiruText.textInactive)
             )

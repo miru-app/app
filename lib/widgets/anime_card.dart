@@ -5,7 +5,7 @@ import 'package:app/assets.dart';
 
 class AnimeCard extends StatelessWidget {
   final Anime anime;
-  static double height = 212;
+  static double height = 216;
 
   AnimeCard({this.anime});
 
@@ -51,7 +51,7 @@ class AnimeCard extends StatelessWidget {
 
 class AnimeCardLarge extends AnimeCard {
   final Anime anime;
-  static double height = 313;
+  static double height = 317;
 
   AnimeCardLarge({this.anime});
 
@@ -98,7 +98,7 @@ class AnimeCardLarge extends AnimeCard {
 class AnimeCardWatched extends AnimeCard {
   final Anime anime;
   final double percentageWatched;
-  static double height = 226;
+  static double height = 230;
 
   AnimeCardWatched({this.anime, this.percentageWatched});
 
@@ -169,20 +169,12 @@ class AnimeCardPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 22, 0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: MiruColors.purplePrimary,
-              borderRadius: const BorderRadius.all(Radius.circular(5))
-            ),
-            height: 156,
-            width: 110,
-          )
-        ]
-      )
+      decoration: BoxDecoration(
+        color: MiruColors.purplePrimary,
+        borderRadius: const BorderRadius.all(Radius.circular(5))
+      ),
+      height: 156,
+      width: 110,
     );
   }
 }
@@ -194,20 +186,12 @@ class AnimeCardPlaceholderLarge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 22, 0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: MiruColors.purplePrimary,
-              borderRadius: const BorderRadius.all(Radius.circular(5))
-            ),
-            height: 257,
-            width: 181,
-          )
-        ]
-      )
+      decoration: BoxDecoration(
+        color: MiruColors.purplePrimary,
+        borderRadius: const BorderRadius.all(Radius.circular(5))
+      ),
+      height: 257,
+      width: 181,
     );
   }
 }
