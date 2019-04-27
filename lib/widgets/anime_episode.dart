@@ -1,30 +1,61 @@
+import 'dart:async';
+
 import 'package:app/assets.dart';
+import 'package:app/anime.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 
 class AnimeEpisodeSection extends StatelessWidget {
-  final List<Widget> episodes;
+  final Future<dynamic> future;
 
-  AnimeEpisodeSection({this.episodes});
+  const AnimeEpisodeSection({this.future});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Text('Episodes', style: MiruText.textHeading),
-              ),
-              Text('quick play', style: MiruText.textButton)
-            ]
-          ),
-          Column(
-            children: episodes
-          )
-        ],
+      child: FutureBuilder<dynamic>(
+        future: future,
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) { //checks if the response returns valid data
+            final List<Episode> episodeList = [];
+
+            // Add the widgets to the list
+            snapshot.data.forEach((AnimeEpisode episode) {
+              episodeList.add(
+                Episode(
+                  imageUrl: episode.thumbnailUrl,
+                  number: episode.number,
+                  title: episode.title,
+                  onTap: () { print('hello world'); }
+                )
+              );
+            });
+
+            // Building the basic UI
+            return Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text('Episodes', style: MiruText.textHeading),
+                    ),
+                    Text('quick play', style: MiruText.textButton)
+                  ]
+                ),
+                Column(
+                  children: episodeList
+                )
+              ],
+            );
+
+          } else if (snapshot.hasError) { //checks if the response throws an error
+            return Text(snapshot.error);
+          }
+
+          return const Text('Loading Episodes...'); // If no errors and no data, assume still loading
+          // TODO placeholders
+        }
       )
     );
   }

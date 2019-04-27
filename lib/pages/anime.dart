@@ -7,6 +7,7 @@ import 'package:app/assets.dart';
 import 'package:app/anime.dart';
 import 'package:app/widgets/video_player.dart';
 import 'package:app/apis/miru.dart' as MiruAPI;
+import 'package:app/apis/kitsu.dart' as kitsu; // Kitsu API methods
 
 class AnimePage extends StatelessWidget  {
   final Anime anime;
@@ -40,9 +41,9 @@ class AnimePage extends StatelessWidget  {
             ),
             AnimeDetailsCard(
               title: this.anime.title,
-              part1: '${this.anime.episodeLength} minutes',
-              part2: this.anime.showType,
-              part3: this.anime.startDate,
+              episodeLength: '${this.anime.episodeLength} minutes',
+              showType: this.anime.showType,
+              startDate: this.anime.startDate,
               imageUrl: this.anime.coverUrl,
               onPlay: () async {
                 final streams = await MiruAPI.getAnimeStreams(41024, 1);
@@ -68,20 +69,8 @@ class AnimePage extends StatelessWidget  {
             ),
             AnimeSummary(text: this.anime.synopsis),
             AnimeEpisodeSection(
-              episodes: <Widget>[
-                Episode(
-                  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SIPI_Jelly_Beans_4.1.07.tiff/lossy-page1-256px-SIPI_Jelly_Beans_4.1.07.tiff.jpg',
-                  number: 1,
-                  title: 'Once upon a time.',
-                  onTap: () { print('hello world'); }
-                ),
-                Episode(
-                  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SIPI_Jelly_Beans_4.1.07.tiff/lossy-page1-256px-SIPI_Jelly_Beans_4.1.07.tiff.jpg',
-                  number: 2,
-                  title: 'There was an octopus named RedDucks',
-                  onTap: () { print('yes, your pfp is an octopus'); }
-                )
-              ],
+              future: kitsu.getAnimeEpisodes(anime.id)
+              //episodes: kitsu.getAnimeEpisodes(anime.id),
             )
           ]
         )

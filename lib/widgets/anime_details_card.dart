@@ -4,13 +4,13 @@ import 'package:flutter/widgets.dart';
 
 class AnimeDetailsCard extends StatelessWidget {
   final String title;
-  final String part1;
-  final String part2;
-  final String part3;
+  final String episodeLength;
+  final String showType;
+  final String startDate;
   final String imageUrl;
   final onPlay;
 
-  AnimeDetailsCard({this.title, this.part1, this.part2, this.part3, this.imageUrl, this.onPlay});
+  AnimeDetailsCard({this.title, this.episodeLength, this.showType, this.startDate, this.imageUrl, this.onPlay});
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +43,11 @@ class AnimeDetailsCard extends StatelessWidget {
           Text(this.title, style: MiruText.textHeading),
           Row(
             children: <Widget>[
-              Text(this.part1, style: MiruText.textEmphasis),
+              Text(this.episodeLength, style: MiruText.textEmphasis),
               Text(' - ', style: MiruText.textEmphasis), // TODO make these opaque dots
-              Text(this.part2, style: MiruText.textEmphasis),
+              Text(this.showType, style: MiruText.textEmphasis),
               Text(' - ', style: MiruText.textEmphasis), // TODO make these opaque dots
-              Text(this.part3, style: MiruText.textEmphasis) // TODO make this change based on show type (movies should only be "endDate" but tv shows should be "startDate - endDate")
+              Text(this.startDate, style: MiruText.textEmphasis) // TODO make this change based on show type (movies should only be "endDate" but tv shows should be "startDate - endDate")
             ]
           )
         ],

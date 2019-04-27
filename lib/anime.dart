@@ -87,26 +87,35 @@ class Anime {
 }
 
 class AnimeEpisode {
-  final int episodeNumber;
+  final int number;
   final String title;
   final String synopsis;
   final String thumbnailUrl;
   final String airDate;
 
-  AnimeEpisode({this.episodeNumber, this.title, this.synopsis, this.thumbnailUrl, this.airDate});
+  AnimeEpisode({this.number, this.title, this.synopsis, this.thumbnailUrl, this.airDate});
 
   factory AnimeEpisode.fromJson(Map<String, dynamic> json) {
     String thumbnailUrl;
+    String title;
 
     if (json['attributes']['thumbnail'] != null) {
       thumbnailUrl = json['attributes']['thumbnail']['original'];
     } else {
-      thumbnailUrl = 'http://some.default/image.png';
+      // NEEDS TO BE REPLACED WITH A REAL PLACEHOLDER/DEFAULT
+      thumbnailUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SIPI_Jelly_Beans_4.1.07.tiff/lossy-page1-256px-SIPI_Jelly_Beans_4.1.07.tiff.jpg';
     }
 
+    if (json['attributes']['canonicalTitle'] != null) {
+      title = json['attributes']['canonicalTitle'];
+    } else {
+      title = '';
+    }
+    
+
     return AnimeEpisode(
-      episodeNumber: json['attributes']['number'],
-      title: json['attributes']['canonicalTitle'],
+      number: json['attributes']['number'],
+      title: title,
       synopsis: json['attributes']['synopsis'],
       thumbnailUrl: thumbnailUrl,
       airDate: json['attributes']['airdate']
@@ -115,7 +124,7 @@ class AnimeEpisode {
 
   Map<String, dynamic> toJson() {
     return {
-      'episodeNumber': this.episodeNumber,
+      'number': this.number,
       'title': this.title,
       'synopsis': this.synopsis,
       'thumbnailUrl': this.thumbnailUrl,
