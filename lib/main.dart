@@ -1,135 +1,36 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter/rendering.dart';
 import 'package:app/assets.dart';
-import 'package:app/pages/home.dart';
-import 'package:app/pages/anime.dart';
-import 'package:app/pages/search.dart';
+import 'package:app/widgets/app.dart';
+import 'package:flutter/widgets.dart';
+//import 'package:flutter/rendering.dart'; // ui debug
 
-// Start the app
 void main() {
-  // Run the app
-  //debugPaintSizeEnabled=true;
-  runApp(MiruApp());
-}
+  
+  //debugPaintSizeEnabled=true; // enable ui debug
 
-// This is where the app lives
-class MiruApp extends StatelessWidget {
-Route generate(RouteSettings settings) {
-    Route page;
-    switch(settings.name) {
-      case "/": // home
-        page = new  PageRouteBuilder(
-          pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new HomePage();
-          },
-          transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
-            return new FadeTransition(
-              opacity: animation,
-              child: new FadeTransition(
-                opacity: new Tween<double>(begin: 1.0, end: 0.0).animate(second),
-                child: child,
-              ),
-            );
-          }
-        );
-        break;
-
-      case "/search": // search bar view
-        page = new  PageRouteBuilder(
-          pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new SearchPage();
-          },
-          transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
-            return new FadeTransition(
-              opacity: animation,
-              child: new FadeTransition(
-                opacity: new Tween<double>(begin: 1.0, end: 0.0).animate(second),
-                child: child,
-              ),
-            );
-          }
-        );
-        break;
-
-        case "/anime": // anime info page
-        page = new PageRouteBuilder(
-          pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return new AnimePage(anime: settings.arguments);
-          },
-          transitionsBuilder: (_, Animation<double> animation, Animation<double> second, Widget child) {
-            return new FadeTransition(
-              opacity: animation,
-              child: new FadeTransition(
-                opacity: new Tween<double>(begin: 1.0, end: 0.0).animate(second),
-                child: child,
-              ),
-            );
-          }
-        );
-        break;
-    }
-    return page;
+  Route generate(RouteSettings settings) {
+    return PageRouteBuilder(
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+        return MiruApp();
+      }
+    );
   }
 
   Route unKnownRoute(RouteSettings settings) {
-    return new PageRouteBuilder(
+    return PageRouteBuilder(
       pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
-        return new Container(
-          child:Text("Something borked!")
+        return Container(
+          child: Text("Something borked!")
         );
       }
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return new WidgetsApp(
+  runApp(
+    WidgetsApp(
+      color: MiruColors.bg,
       onGenerateRoute: generate,
       onUnknownRoute: unKnownRoute,
-      initialRoute: "/",
-      color: MiruColors.purplePrimary,
-      navigatorObservers: [new HeroController()],
-    );
-  }
-}
-
-/*
-import 'package:flutter/material.dart';
-import 'package:app/widgets/video_player.dart';
-
-void main() {
-  runApp(
-    ChewieDemo(),
+      initialRoute: "/"
+    )
   );
 }
-
-class ChewieDemo extends StatelessWidget {
-  ChewieDemo({this.title = 'Video Player Test'});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: title,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: MiruVideoPlayerWidget(
-                  url: 'https://twist.moe/anime/tenseishitaraslimedattaken/[HorribleSubs] Tensei Shitara Slime Datta Ken - 01 [1080p].mp4',
-                  title: 'Tensei Shitara Slime Datta Ken - 01'
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-*/
