@@ -38,9 +38,9 @@ class AnimeEpisodeSection extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     Expanded(
-                      child: Text('Episodes', style: MiruText.textHeading),
+                      child: Text('Episodes', style: MiruText.heading),
                     ),
-                    Text('quick play', style: MiruText.textButton)
+                    Text('quick play', style: MiruText.action)
                   ]
                 ),
                 Column(
@@ -80,11 +80,11 @@ class Episode extends StatelessWidget {
             width: 99,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: MiruColors.bg2,
+              color: MiruColors.placeholder,
               image: DecorationImage(
                 image: CachedNetworkImageProvider(this.imageUrl),
                 fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(MiruColors.blackOverlay, BlendMode.srcATop)
+                colorFilter: ColorFilter.mode(MiruColors.overlay, BlendMode.srcATop)
               ),
             ),
             child: GestureDetector(
@@ -104,10 +104,10 @@ class Episode extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('episode ${this.number}', style: MiruText.textSmallTitle),
+                  Text('episode ${this.number}', style: MiruText.emphasis),
                   Text(
                     this.title,
-                    style: MiruText.textDefault,
+                    style: MiruText.text,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis
                   )

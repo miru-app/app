@@ -1,3 +1,4 @@
+import 'package:app/assets.dart';
 import 'package:app/tabs/home.dart';
 import 'package:app/tabs/search.dart';
 import 'package:app/widgets/navigation.dart';
@@ -23,36 +24,43 @@ class MiruAppState extends State<MiruApp> {
   int index = 0;
   @override
   Widget build(BuildContext ctx) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Stack(
-            children: <Widget>[
-              Offstage(
-                offstage: index != 0,
-                child: TickerMode(
-                  enabled: index == 0,
-                  child: HomeTab(),
-                ),
-              ),
-              Offstage(
-                offstage: index != 1,
-                child: TickerMode(
-                  enabled: index == 1,
-                  child: SearchTab()
-                ),
-              ),
-            ],
-          )
-        ),
-        BottomBar(
-          onTap: (int pageIndex) => {
-            setState(() {
-              index = pageIndex;
-            })
-          }
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: MiruColors.dark
+      ),
+      child: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Stack(
+                children: <Widget>[
+                  Offstage(
+                    offstage: index != 0,
+                    child: TickerMode(
+                      enabled: index == 0,
+                      child: HomeTab(),
+                    ),
+                  ),
+                  Offstage(
+                    offstage: index != 1,
+                    child: TickerMode(
+                      enabled: index == 1,
+                      child: SearchTab()
+                    ),
+                  ),
+                ],
+              )
+            ),
+            BottomBar(
+              onTap: (int pageIndex) => {
+                setState(() {
+                  index = pageIndex;
+                })
+              }
+            )
+          ],
         )
-      ],
+      )
     );
   }
 }

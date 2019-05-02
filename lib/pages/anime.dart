@@ -19,7 +19,7 @@ class AnimePage extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
    return Container( // page itself
-      color: MiruColors.bg,
+      color: MiruColors.dark,
       child: SafeArea( 
         child: ListView( // list so the page can scroll
           children: <Widget>[
@@ -31,11 +31,11 @@ class AnimePage extends StatelessWidget  {
                   Expanded(
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      child: Icon(MiruIcons.folder, color: MiruColors.textEmphasis)
+                      child: Icon(MiruIcons.folder, color: MiruColors.textemphasis)
                     )
                   ),
-                  Icon(MiruIcons.folder_add, color: MiruColors.textEmphasis),
-                  Icon(MiruIcons.heart, color: MiruColors.textEmphasis)
+                  Icon(MiruIcons.folder_add, color: MiruColors.textemphasis),
+                  Icon(MiruIcons.heart, color: MiruColors.textemphasis)
                 ],
               )
             ),

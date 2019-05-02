@@ -18,9 +18,9 @@ class CardSection extends StatelessWidget  {
           child: Row(
             children: <Widget>[
               Expanded(
-                child: Text(this.title, style: MiruText.textHeading),
+                child: Text(this.title, style: MiruText.heading),
               ),
-              Text(this.actionText, style: MiruText.textButton)
+              Text(this.actionText, style: MiruText.action)
             ]
           )
         ),

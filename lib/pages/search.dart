@@ -21,14 +21,14 @@ class SearchPage extends StatelessWidget  {
               child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    color: MiruColors.bg2
+                    color: MiruColors.component
                   ),
                   padding: EdgeInsets.all(15),
                   child: Row(
                     children: <Widget>[
                       Text('ICON'),
                       Expanded(
-                        child: Text('Search...', style: MiruText.textInactive)
+                        child: Text('Search...', style: MiruText.subtitle)
                       )
                     ],
                   )
@@ -41,7 +41,7 @@ class SearchPage extends StatelessWidget  {
               },
               child:Padding(
                 padding: EdgeInsets.all(15),
-                child: Text('Cancel', style: MiruText.textButton)
+                child: Text('Cancel', style: MiruText.action)
               )
             )
           ]
@@ -54,25 +54,25 @@ class SearchPage extends StatelessWidget  {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Recent searches", style: MiruText.textSmallTitle),
+          Text("Recent searches", style: MiruText.heading),
           Padding(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Text("A silent voice", style: MiruText.textDefault),
+            child: Text("A silent voice", style: MiruText.text),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Text("Kimi no na wa", style: MiruText.textDefault),
+            child: Text("Kimi no na wa", style: MiruText.text),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Text("Is this search thingy even working?", style: MiruText.textDefault),
+            child: Text("Is this search thingy even working?", style: MiruText.text),
           )
         ],
       )
     );
 
     return Container( // page itself
-      color: MiruColors.bg,
+      color: MiruColors.dark,
       child: SafeArea( 
         child: Column( // not a list, cuz its a single screen
           children: <Widget>[

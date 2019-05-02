@@ -59,7 +59,7 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext ctx) {
     return WidgetsApp(
-      color: MiruColors.bg,
+      color: MiruColors.dark,
       onGenerateRoute: generate,
       onUnknownRoute: unKnownRoute,
       initialRoute: "/"

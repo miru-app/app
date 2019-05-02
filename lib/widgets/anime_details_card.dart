@@ -20,11 +20,11 @@ class AnimeDetailsCard extends StatelessWidget {
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
-        color: MiruColors.bg2,
+        color: MiruColors.placeholder,
         image: DecorationImage(
           image: CachedNetworkImageProvider(this.imageUrl),
           fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(MiruColors.blackOverlay, BlendMode.srcATop)
+          colorFilter: ColorFilter.mode(MiruColors.overlay, BlendMode.srcATop)
         ),
       ),
       child: Column(
@@ -40,14 +40,14 @@ class AnimeDetailsCard extends StatelessWidget {
               )
             )
           ),
-          Text(this.title, style: MiruText.textHeading),
+          Text(this.title, style: MiruText.heading),
           Row(
             children: <Widget>[
-              Text(this.episodeLength, style: MiruText.textEmphasis),
-              Text(' - ', style: MiruText.textEmphasis), // TODO make these opaque dots
-              Text(this.showType, style: MiruText.textEmphasis),
-              Text(' - ', style: MiruText.textEmphasis), // TODO make these opaque dots
-              Text(this.startDate, style: MiruText.textEmphasis) // TODO make this change based on show type (movies should only be "endDate" but tv shows should be "startDate - endDate")
+              Text(this.episodeLength, style: MiruText.emphasis),
+              Text(' - ', style: MiruText.emphasis), // TODO make these opaque dots
+              Text(this.showType, style: MiruText.emphasis),
+              Text(' - ', style: MiruText.emphasis), // TODO make these opaque dots
+              Text(this.startDate, style: MiruText.emphasis) // TODO make this change based on show type (movies should only be "endDate" but tv shows should be "startDate - endDate")
             ]
           )
         ],

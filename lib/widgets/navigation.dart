@@ -24,7 +24,7 @@ class BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext ctx) {
     return Container(
-      color: MiruColors.bg,
+      color: MiruColors.dark,
       child: Row(
         children: <Widget>[
           Expanded(

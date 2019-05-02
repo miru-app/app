@@ -4,9 +4,8 @@ import 'package:flutter/widgets.dart';
 //import 'package:flutter/rendering.dart'; // ui debug
 
 void main() {
-  
   //debugPaintSizeEnabled=true; // enable ui debug
-
+  
   Route generate(RouteSettings settings) {
     return PageRouteBuilder(
       pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
@@ -27,7 +26,7 @@ void main() {
 
   runApp(
     WidgetsApp(
-      color: MiruColors.bg,
+      color: MiruColors.dark,
       onGenerateRoute: generate,
       onUnknownRoute: unKnownRoute,
       initialRoute: "/"
