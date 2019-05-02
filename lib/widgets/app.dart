@@ -21,7 +21,7 @@ class MiruAppState extends State<MiruApp> {
     super.initState();
   }
 
-  int index = 0;
+  int index = 1;
   @override
   Widget build(BuildContext ctx) {
     return DecoratedBox(
@@ -35,16 +35,16 @@ class MiruAppState extends State<MiruApp> {
               child: Stack(
                 children: <Widget>[
                   Offstage(
-                    offstage: index != 0,
+                    offstage: index != 1,
                     child: TickerMode(
-                      enabled: index == 0,
+                      enabled: index == 1,
                       child: HomeTab(),
                     ),
                   ),
                   Offstage(
-                    offstage: index != 1,
+                    offstage: index != 2,
                     child: TickerMode(
-                      enabled: index == 1,
+                      enabled: index == 2,
                       child: SearchTab()
                     ),
                   ),
@@ -56,7 +56,8 @@ class MiruAppState extends State<MiruApp> {
                 setState(() {
                   index = pageIndex;
                 })
-              }
+              },
+              selected: this.index
             )
           ],
         )

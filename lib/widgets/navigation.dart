@@ -3,8 +3,9 @@ import 'package:flutter/widgets.dart';
 
 class BottomBar extends StatefulWidget {
   final onTap;
+  final selected;
 
-  BottomBar({this.onTap});
+  BottomBar({this.onTap, this.selected});
 
   @override
   BottomBarState createState() {
@@ -14,11 +15,20 @@ class BottomBar extends StatefulWidget {
 
 class BottomBarState extends State<BottomBar> {
   var onTap;
+  int selected;
 
   @override
   void initState() {
     this.onTap = widget.onTap;
+    this.selected = widget.selected;
     super.initState();
+  }
+
+  void changeTab(int index) {
+    this.onTap(index);
+    setState(() {
+      selected = index;
+    });
   }
 
   @override
@@ -26,32 +36,29 @@ class BottomBarState extends State<BottomBar> {
     return Container(
       color: MiruColors.dark,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Expanded(
-            child: GestureDetector(
-              onTap: () => {
-                onTap(0)
-              },
-              child: Text('switch0')
+          GestureDetector(
+            onTap: () { changeTab(1); },
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                MiruIcons.search,
+                color: selected == 1 ? MiruColors.action : MiruColors.textmuted
+              )
             )
           ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () => {
-                onTap(1)
-              },
-              child: Text('switch1')
-            )
-          ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () => {
-                onTap(2)
-              },
-              child: Text('switch2')
+          GestureDetector(
+            onTap: () { changeTab(2); },
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                MiruIcons.search,
+                color: selected == 2 ? MiruColors.action : MiruColors.textmuted
+              )
             )
           )
-        ],
+        ]
       )
     );
   }
