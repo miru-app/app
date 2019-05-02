@@ -7,8 +7,9 @@ import 'package:flutter/widgets.dart';
 
 class AnimeEpisodeSection extends StatelessWidget {
   final Future<dynamic> future;
+  final onTap;
 
-  const AnimeEpisodeSection({this.future});
+  const AnimeEpisodeSection({this.future, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,9 @@ class AnimeEpisodeSection extends StatelessWidget {
                   imageUrl: episode.thumbnailUrl,
                   number: episode.number,
                   title: episode.title,
-                  onTap: () { print('hello world'); }
+                  onTap: () {
+                    onTap(episode);
+                  }
                 )
               );
             });

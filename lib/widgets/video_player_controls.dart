@@ -27,6 +27,7 @@ class MiruVideoPlayerControls extends StatefulWidget {
 }
 
 class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
+
   VideoPlayerValue _latestValue;
   bool _hideStuff = true;
   Timer _hideTimer;
@@ -84,6 +85,8 @@ class _MiruVideoPlayerControlsState extends State<MiruVideoPlayerControls> {
       _dispose();
       _initialize();
     }
+
+    //chewieController.enterFullScreen();
 
     super.didChangeDependencies();
   }

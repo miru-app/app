@@ -146,13 +146,14 @@ class AnimeStream {
   AnimeStream({this.provider, this.providerFull, this.fileHost, this.file, this.dubbed, this.quality, this.m3u8, this.subtitlesFile});
 
   factory AnimeStream.fromJson(Map<String, dynamic> json) {
+
     return AnimeStream(
       provider: json['provider'],
       providerFull: json['provider_full'],
       fileHost: json['file_host'],
       file: json['file'],
       dubbed: json['dubbed'],
-      quality: json['quality'],
+      //quality: json['quality'],
       m3u8: json['m3u8'],
       subtitlesFile: json['subtitles_file']
     );

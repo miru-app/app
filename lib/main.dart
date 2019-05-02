@@ -1,3 +1,4 @@
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter/rendering.dart';
 import 'package:app/assets.dart';
@@ -93,6 +94,7 @@ Route generate(RouteSettings settings) {
   }
 }
 
+
 /*
 import 'package:flutter/material.dart';
 import 'package:app/widgets/video_player.dart';
@@ -130,6 +132,67 @@ class ChewieDemo extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+*/
+
+/*
+import 'package:flutter/material.dart';
+import 'package:app/widgets/video_player.dart';
+
+void main() {
+  runApp(
+    PlayerTest(),
+  );
+}
+
+class PlayerTest extends StatefulWidget {
+  Visibility videoPlayer;
+  int counter = 0;
+  
+  PlayerTest({this.title = 'Video Player Test'});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    videoPlayer = Visibility(
+      visible: false,
+      child: MiruVideoPlayerWidget(
+        url: 'https://twist.moe/anime/tenseishitaraslimedattaken/[HorribleSubs] Tensei Shitara Slime Datta Ken - 01 [1080p].mp4',
+        title: 'Tensei Shitara Slime Datta Ken - 01'
+      ),
+    );
+
+    return MaterialApp(
+      title: title,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: Column(
+          children: <Widget>[
+            videoPlayer,
+
+            RaisedButton(
+              child: Text('$counter'),
+              color: Theme.of(context).accentColor,
+              elevation: 4.0,
+              splashColor: Colors.blueGrey,
+              onPressed: () {
+                
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return null;
   }
 }
 */

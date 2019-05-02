@@ -7,12 +7,13 @@ class MiruVideoPlayerWidget extends StatefulWidget {
 
   final String title;
   final String url;
+  final onExit;
 
-  const MiruVideoPlayerWidget({Key key, this.title, this.url}) : super(key: key);
+  const MiruVideoPlayerWidget({Key key, this.title, this.url, this.onExit}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return MiruVideoPlayer(title, url);
+    return MiruVideoPlayer(title, url, onExit);
   }
 }
 
@@ -22,14 +23,17 @@ class MiruVideoPlayer extends State<MiruVideoPlayerWidget> {
 
   final String title;
   final String url;
+  final onExit;
 
-  MiruVideoPlayer(this.title, this.url);
+  MiruVideoPlayer(this.title, this.url, this.onExit);
 
   @override
   void initState() {
     super.initState();
     _videoPlayerController = VideoPlayerController.network(url);
     _chewieController = ChewieController(
+      showControls: true,
+      fullScreenByDefault: true,
       videoPlayerController: _videoPlayerController,
       autoPlay: true,
       customControls: MiruVideoPlayerControls(title: title)

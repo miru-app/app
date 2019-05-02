@@ -8,9 +8,9 @@ class AnimeDetailsCard extends StatelessWidget {
   final String showType;
   final String startDate;
   final String imageUrl;
-  final onPlay;
+  final onTap;
 
-  AnimeDetailsCard({this.title, this.episodeLength, this.showType, this.startDate, this.imageUrl, this.onPlay});
+  AnimeDetailsCard({this.title, this.episodeLength, this.showType, this.startDate, this.imageUrl, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class AnimeDetailsCard extends StatelessWidget {
             child: Center(
               child: Container(
                 child: GestureDetector(
-                  onTap: onPlay,
+                  onTap: onTap,
                   child: Text('Play') // TODO add play button
                 )
               )
