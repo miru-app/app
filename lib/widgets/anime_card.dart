@@ -36,7 +36,7 @@ class AnimeCard extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   this.anime.title,
-                  style: MiruText.textEmphasis,
+                  style: MiruText.text,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2
                 )
@@ -82,7 +82,7 @@ class AnimeCardLarge extends AnimeCard {
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   this.anime.title,
-                  style: MiruText.textEmphasis,
+                  style: MiruText.text,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2
                 )
@@ -130,13 +130,13 @@ class AnimeCardWatched extends AnimeCard {
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: MiruColors.bg2
+                  color: MiruColors.placeholder
                 ),
                 child: FractionallySizedBox(
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: MiruColors.primaryColor
+                      color: MiruColors.action // make gradient ??
                     ),
                   ),
                   heightFactor: 1.0,
@@ -149,7 +149,7 @@ class AnimeCardWatched extends AnimeCard {
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   this.anime.title,
-                  style: MiruText.textEmphasis,
+                  style: MiruText.text,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2
                 )
@@ -170,7 +170,7 @@ class AnimeCardPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: MiruColors.purplePrimary,
+        color: MiruColors.placeholder,
         borderRadius: const BorderRadius.all(Radius.circular(5))
       ),
       height: 156,
@@ -187,7 +187,7 @@ class AnimeCardPlaceholderLarge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: MiruColors.purplePrimary,
+        color: MiruColors.placeholder,
         borderRadius: const BorderRadius.all(Radius.circular(5))
       ),
       height: 257,

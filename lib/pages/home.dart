@@ -1,3 +1,4 @@
+import 'package:app/widgets/page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
 import 'package:app/apis/kitsu.dart' as kitsu; // Kitsu API methods
@@ -11,93 +12,52 @@ class HomePage extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
-
-    final dynamic topBar = Container(
-      margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Text("Miru", style: MiruText.textSmallTitle)
-          ),
-          Icon(MiruIcons.folder, color: MiruColors.textEmphasis),
-          Icon(MiruIcons.settings, color: MiruColors.textEmphasis)
-        ]
-      )
-    );
-
-    final dynamic search = GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/search');
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          color: MiruColors.bg2
-        ),
-        margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
-        padding: EdgeInsets.all(15),
-        child: Row(
-          children: <Widget>[
-            Icon(MiruIcons.search, color: MiruColors.textEmphasis),
-            Expanded(
-              child: Text('Search...', style: MiruText.textInactive)
-            )
-          ],
-        )
-      )
-    );
       
     return Container( // page itself
-      color: MiruColors.bg,
-      child: SafeArea(
-        child: ListView( // list so the page can scroll
-          children: <Widget>[
-            topBar,
-            Hero(
-              tag: 'search',
-              child: search
-            ),
-            CardSection(
-              title: 'Unfinished',
+      color: MiruColors.dark,
+      child: ListView( // list so the page can scroll
+        children: <Widget>[
+          PageTitleDetailed('Discover','Find new anime'),
+          CardSection(
+            title: 'Unfinished',
+            actionText: 'see all',
+            onTap: () => {},
+            child: Container(
+              height: HorizontalAnimeListWatched.height,
+              child: HorizontalAnimeListWatched(
+                future: kitsu.getTrending()
+              )
+            )
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+            child: CardSection(
+              title: 'Popular',
               actionText: 'see all',
               onTap: () => {},
               child: Container(
-                height: HorizontalAnimeListWatched.height,
-                child: HorizontalAnimeListWatched(
+                height: HorizontalAnimeListLarge.height,
+                child: HorizontalAnimeListLarge(
                   future: kitsu.getTrending()
                 )
               )
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
-              child: CardSection(
-                title: 'Popular',
-                actionText: 'see all',
-                onTap: () => {},
-                child: Container(
-                  height: HorizontalAnimeListLarge.height,
-                  child: HorizontalAnimeListLarge(
-                    future: kitsu.getTrending()
-                  )
-                )
-              )
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
-              child: CardSection(
-                title: 'Recent',
-                actionText: 'see all',
-                onTap: () => {},
-                child: Container(
-                  height: HorizontalAnimeList.height,
-                  child: HorizontalAnimeList(
-                    future: kitsu.getTrending()
-                  )
+            )
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+            child: CardSection(
+              title: 'Recent',
+              actionText: 'see all',
+              onTap: () => {},
+              child: Container(
+                height: HorizontalAnimeList.height,
+                child: HorizontalAnimeList(
+                  future: kitsu.getTrending()
                 )
               )
             )
-          ]
-        )
+          )
+        ]
       )
     );
   }

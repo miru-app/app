@@ -12,8 +12,8 @@ class AnimeInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(this.title, style: MiruText.textMuted),
-        Text(this.data, style: MiruText.textHeading)
+        Text(this.title, style: MiruText.subtitle),
+        Text(this.data, style: MiruText.title)
       ],
     );
   }
@@ -33,14 +33,14 @@ class AnimeSummary extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-            child: Text('Summary', style: MiruText.textHeading)
+            child: Text('Summary', style: MiruText.heading)
           ),
           Text(
             this.text,
-            style: MiruText.textDefault,
+            style: MiruText.text,
             maxLines: 5
           ),
-          Text('Read more', style: MiruText.textButton) // TODO not show for smaller than 5 lines
+          Text('Read more', style: MiruText.action) // TODO not show for smaller than 5 lines
         ]
       )
     );

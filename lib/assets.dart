@@ -13,62 +13,59 @@ class MiruIcons {
 }
 
 class MiruColors {
-  static const Color purplePrimary = Color.fromARGB(255, 34, 30, 58);
-  static const Color heading = Color.fromARGB(255, 255, 255, 255);
-  static const Color pinkPrimary = Color.fromARGB(255, 246, 16, 103);
-  static const Color iconColor = Color(0xFF4A485C);
+  static const Color dark = Color(0xFF1D1D27);
+  static const Color placeholder = Color(0xFF252534);
+  static const Color component = Color(0xFF30303F);
 
-  static const Color bg = Color.fromARGB(255, 29, 29, 39);
-  static const Color blackOverlay = Color.fromARGB(64, 0, 0, 0);
+  static const Color textmuted = Color(0xFF4C4C66);
+  static const Color textnofocus = Color(0xFFADADC9);
+  static const Color text = Color(0xFFC4C4D9);
+  static const Color textemphasis = Color(0xFFFFFFFF);
 
-  static const Color textEmphasis = Color.fromARGB(255, 255, 255, 255);
-  static const Color textParagraph = Color.fromARGB(255, 162, 162, 180);
-  static const Color textGray = Color.fromARGB(255, 173, 173, 201);
-  static const Color primaryColor = Color.fromARGB(255, 158, 158, 255);
-  static const Color bg2 = Color.fromARGB(255, 48, 48, 63);
+  static const Color action = Color(0xFF9E9EFF);
+  static const Color red = Color(0xFFFF5C5C);
+
+  static const Color gradienttop = Color(0xFFA25AFF);
+  static const Color gradientbottom = Color(0xFF9E9EFF);
+
+  static const Color overlay = Color.fromRGBO(0, 0, 0, .5);
 }
 
 class MiruText {
-  static const TextStyle textDefault = TextStyle(
-    color: MiruColors.textParagraph,
+  static const TextStyle title = TextStyle(
+    color: MiruColors.textemphasis,
     fontWeight: FontWeight.normal,
-    fontSize: 15,
-    fontFamily: 'OpenSans'
-  );
-  static const TextStyle textInactive = TextStyle(
-    color: MiruColors.textParagraph,
-    fontWeight: FontWeight.normal,
-    fontSize: 15,
-    fontFamily: 'OpenSans'
-  );
-  static const TextStyle textEmphasis = TextStyle(
-    color: MiruColors.textEmphasis,
-    fontWeight: FontWeight.normal,
-    fontSize: 15,
-    fontFamily: 'OpenSans'
-  );
-  static const TextStyle textMuted = TextStyle(
-    color: MiruColors.textGray,
-    fontWeight: FontWeight.normal,
-    fontSize: 15,
-    fontFamily: 'OpenSans'
-  );
-  static const TextStyle textSmallTitle = TextStyle(
-    color: MiruColors.textEmphasis,
-    fontWeight: FontWeight.w700,
-    fontSize: 15,
-    fontFamily: 'OpenSans'
-  );
-  static const TextStyle textButton = TextStyle(
-    color: MiruColors.primaryColor,
-    fontWeight: FontWeight.normal,
-    fontSize: 15,
-    fontFamily: 'OpenSans'
-  );
-  static const TextStyle textHeading = TextStyle(
-    fontWeight: FontWeight.w700,
-    color: MiruColors.textEmphasis,
     fontSize: 25,
+    fontFamily: 'OpenSans'
+  );
+  static const TextStyle subtitle = TextStyle(
+    color: MiruColors.textnofocus,
+    fontWeight: FontWeight.normal,
+    fontSize: 15,
+    fontFamily: 'OpenSans'
+  );
+  static const TextStyle heading = TextStyle(
+    color: MiruColors.textemphasis,
+    fontWeight: FontWeight.normal,
+    fontSize: 20,
+    fontFamily: 'OpenSans'
+  );
+  static const TextStyle action = TextStyle(
+    color: MiruColors.action,
+    fontWeight: FontWeight.normal,
+    fontSize: 15,
+    fontFamily: 'OpenSans'
+  );
+  static const TextStyle emphasis = TextStyle(
+    color: MiruColors.textemphasis,
+    fontWeight: FontWeight.normal,
+    fontSize: 15,
+    fontFamily: 'OpenSans'
+  );
+  static const TextStyle text = TextStyle(
+    color: MiruColors.text,
+    fontWeight: FontWeight.normal,
+    fontSize: 15,
     fontFamily: 'OpenSans'
   );
 }
