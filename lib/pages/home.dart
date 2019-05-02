@@ -1,3 +1,4 @@
+import 'package:app/widgets/page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
 import 'package:app/apis/kitsu.dart' as kitsu; // Kitsu API methods
@@ -16,6 +17,7 @@ class HomePage extends StatelessWidget  {
       color: MiruColors.dark,
       child: ListView( // list so the page can scroll
         children: <Widget>[
+          PageTitleDetailed('Discover','Find new anime'),
           CardSection(
             title: 'Unfinished',
             actionText: 'see all',

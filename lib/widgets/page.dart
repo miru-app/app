@@ -10,8 +10,9 @@ class PageTitleDetailed extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      padding: EdgeInsets.fromLTRB(20, 10, 20, 30),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(title, style: MiruText.title),
           Text(subTitle, style: MiruText.subtitle)
