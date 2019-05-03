@@ -5,13 +5,13 @@ import 'package:flutter/widgets.dart';
 
 class HorizontalAnimeList extends StatelessWidget  {
   final Future<dynamic> future;
-  static double height = AnimeCard.height;
 
   HorizontalAnimeList({this.future});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: AnimeCard.height,
       child: FutureBuilder<dynamic>(
         future: future, // sets the getTranding method as the expected Future
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -43,13 +43,13 @@ class HorizontalAnimeList extends StatelessWidget  {
 
 class HorizontalAnimeListLarge extends StatelessWidget  {
   final Future<dynamic> future;
-  static double height = AnimeCardLarge.height;
 
   HorizontalAnimeListLarge({this.future});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: AnimeCardLarge.height,
       child: FutureBuilder<dynamic>(
         future: future, // sets the getTranding method as the expected Future
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -81,13 +81,13 @@ class HorizontalAnimeListLarge extends StatelessWidget  {
 
 class HorizontalAnimeListWatched extends StatelessWidget  {
   final Future<dynamic> future;
-  static double height = AnimeCardWatched.height;
 
   HorizontalAnimeListWatched({this.future});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: AnimeCardWatched.height,
       child: FutureBuilder<dynamic>(
         future: future, // sets the getTranding method as the expected Future
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {

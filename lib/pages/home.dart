@@ -1,3 +1,4 @@
+import 'package:app/anime.dart';
 import 'package:app/widgets/page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
@@ -7,8 +8,12 @@ import 'package:app/widgets/card_section.dart';
 
 class HomePage extends StatelessWidget  {
   final String title;
+  final BuildContext appContext;
 
-  HomePage({Key key, this.title}) : super(key: key);
+  HomePage({this.appContext, this.title});
+
+  void openAnimePage(Anime anime) {
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,6 @@ class HomePage extends StatelessWidget  {
             actionText: 'see all',
             onTap: () => {},
             child: Container(
-              height: HorizontalAnimeListWatched.height,
               child: HorizontalAnimeListWatched(
                 future: kitsu.getTrending()
               )
@@ -36,7 +40,6 @@ class HomePage extends StatelessWidget  {
               actionText: 'see all',
               onTap: () => {},
               child: Container(
-                height: HorizontalAnimeListLarge.height,
                 child: HorizontalAnimeListLarge(
                   future: kitsu.getTrending()
                 )
@@ -50,7 +53,6 @@ class HomePage extends StatelessWidget  {
               actionText: 'see all',
               onTap: () => {},
               child: Container(
-                height: HorizontalAnimeList.height,
                 child: HorizontalAnimeList(
                   future: kitsu.getTrending()
                 )

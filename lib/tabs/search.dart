@@ -1,8 +1,12 @@
 import 'package:app/assets.dart';
 import 'package:app/pages/search.dart';
 import 'package:flutter/widgets.dart';
+import 'package:app/navigationhelper.dart' as navigationHelper;
 
 class SearchTab extends StatelessWidget {
+  final BuildContext appContext;
+  
+  SearchTab({this.appContext});
   
   Route generate(RouteSettings settings) {
     Route page;
@@ -27,22 +31,12 @@ class SearchTab extends StatelessWidget {
     return page;
   }
 
-  Route unKnownRoute(RouteSettings settings) {
-    return PageRouteBuilder(
-      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
-        return Container(
-          child: Text("Something borked!")
-        );
-      }
-    );
-  }
-
   @override
   Widget build(BuildContext ctx) {
     return WidgetsApp(
       color: MiruColors.dark,
       onGenerateRoute: generate,
-      onUnknownRoute: unKnownRoute,
+      onUnknownRoute: navigationHelper.unKnownRoute,
       initialRoute: "/"
     );
   }

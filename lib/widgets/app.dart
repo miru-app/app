@@ -38,14 +38,18 @@ class MiruAppState extends State<MiruApp> {
                     offstage: index != 1,
                     child: TickerMode(
                       enabled: index == 1,
-                      child: HomeTab(),
+                      child: HomeTab(
+                        appContext: ctx
+                      ),
                     ),
                   ),
                   Offstage(
                     offstage: index != 2,
                     child: TickerMode(
                       enabled: index == 2,
-                      child: SearchTab()
+                      child: SearchTab(
+                        appContext: ctx
+                      )
                     ),
                   ),
                 ],
