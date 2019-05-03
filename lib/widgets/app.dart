@@ -1,5 +1,6 @@
 import 'package:app/assets.dart';
 import 'package:app/tabs/home.dart';
+import 'package:app/tabs/library.dart';
 import 'package:app/tabs/search.dart';
 import 'package:app/widgets/navigation.dart';
 import 'package:flutter/widgets.dart';
@@ -50,6 +51,31 @@ class MiruAppState extends State<MiruApp> {
                       child: SearchTab(
                         appContext: ctx
                       )
+                    ),
+                  ),
+                  Offstage(
+                    offstage: index != 3,
+                    child: TickerMode(
+                      enabled: index == 3,
+                      child: LibraryTab(
+                        appContext: ctx
+                      )
+                    ),
+                  ),
+                  Offstage(
+                    offstage: index != 4,
+                    child: TickerMode(
+                      enabled: index == 4,
+                      child: SearchTab(
+                        appContext: ctx
+                      )
+                    ),
+                  ),
+                  Offstage( // testing tab
+                    offstage: index != 5,
+                    child: TickerMode(
+                      enabled: index == 5,
+                      child: SearchTab()
                     ),
                   ),
                 ],

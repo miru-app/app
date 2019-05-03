@@ -1,3 +1,5 @@
+import 'package:app/widgets/searchbar.dart';
+import 'package:app/widgets/tag.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
 
@@ -8,81 +10,31 @@ class SearchPage extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
-
-    final dynamic search = Container(
-        margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/searchresults');
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    color: MiruColors.component
-                  ),
-                  padding: EdgeInsets.all(15),
-                  child: Row(
-                    children: <Widget>[
-                      Text('ICON'),
-                      Expanded(
-                        child: Text('Search...', style: MiruText.subtitle)
-                      )
-                    ],
-                  )
-                )
-              )
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/');
-              },
-              child:Padding(
-                padding: EdgeInsets.all(15),
-                child: Text('Cancel', style: MiruText.action)
-              )
-            )
-          ]
-        )
-    );
-
-    final dynamic recent = Container(
-      margin: EdgeInsets.fromLTRB(20, 0, 0, 20),
-      constraints: BoxConstraints.expand(),
+    return Container(
+      color: MiruColors.dark,
+      margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: SearchBar()
+          ),
           Text("Recent searches", style: MiruText.heading),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Text("A silent voice", style: MiruText.text),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Text("Kimi no na wa", style: MiruText.text),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Text("Is this search thingy even working?", style: MiruText.text),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Tag(text: 'A silent voice', onTap: () {}),
+                  Tag(text: 'Kimi no na wa', onTap: () {}),
+                  Tag(text: 'Is this search thingy even working?', onTap: () {})
+                ],
+              )
+            )
           )
-        ],
-      )
-    );
-
-    return Container( // page itself
-      color: MiruColors.dark,
-      child: SafeArea( 
-        child: Column( // not a list, cuz its a single screen
-          children: <Widget>[
-            Hero(
-              tag: 'search',
-              child: search
-            ),
-            Expanded(child: recent),
-          ]
-        )
+        ]
       )
     );
 

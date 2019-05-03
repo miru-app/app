@@ -43,7 +43,7 @@ class BottomBarState extends State<BottomBar> {
             child: Padding(
               padding: EdgeInsets.all(10),
               child: Icon(
-                MiruIcons.search,
+                MiruIcons.heart_filled,
                 color: selected == 1 ? MiruColors.action : MiruColors.textmuted
               )
             )
@@ -55,6 +55,36 @@ class BottomBarState extends State<BottomBar> {
               child: Icon(
                 MiruIcons.search,
                 color: selected == 2 ? MiruColors.action : MiruColors.textmuted
+              )
+            )
+          ),
+          GestureDetector(
+            onTap: () { changeTab(3); },
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                MiruIcons.folder,
+                color: selected == 3 ? MiruColors.action : MiruColors.textmuted
+              )
+            )
+          ),
+          GestureDetector(
+            onTap: () { changeTab(4); },
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                MiruIcons.settings,
+                color: selected == 4 ? MiruColors.action : MiruColors.textmuted
+              )
+            )
+          ),
+          GestureDetector(
+            onTap: () { changeTab(5); },
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                MiruIcons.heart_filled,
+                color: selected == 5 ? MiruColors.action : MiruColors.textmuted
               )
             )
           )
