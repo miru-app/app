@@ -1,12 +1,12 @@
 import 'package:app/assets.dart';
-import 'package:app/pages/search.dart';
+import 'package:app/pages/list.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/navigationhelper.dart' as navigationHelper;
 
-class SearchTab extends StatelessWidget {
+class SettingsTab extends StatelessWidget {
   final BuildContext appContext;
 
-  SearchTab({this.appContext});
+  SettingsTab({this.appContext});
   
   Route generate(RouteSettings settings) {
     Route page;
@@ -14,24 +14,7 @@ class SearchTab extends StatelessWidget {
       case "/":
         page = PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return SearchPage();
-          },
-          transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> second, Widget child) {
-            return FadeTransition(
-              opacity: animation,
-              child: FadeTransition(
-                opacity: Tween<double>(begin: 1.0, end: 0.0).animate(second),
-                child: child,
-              ),
-            );
-          }
-        );
-        break;
-
-        case "/result":
-        page = PageRouteBuilder(
-          pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return SearchPage();
+            return ListPage();
           },
           transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> second, Widget child) {
             return FadeTransition(

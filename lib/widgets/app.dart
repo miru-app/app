@@ -2,6 +2,7 @@ import 'package:app/assets.dart';
 import 'package:app/tabs/home.dart';
 import 'package:app/tabs/library.dart';
 import 'package:app/tabs/search.dart';
+import 'package:app/tabs/settings.dart';
 import 'package:app/widgets/navigation.dart';
 import 'package:flutter/widgets.dart';
 
@@ -66,7 +67,7 @@ class MiruAppState extends State<MiruApp> {
                     offstage: index != 4,
                     child: TickerMode(
                       enabled: index == 4,
-                      child: SearchTab(
+                      child: SettingsTab(
                         appContext: ctx
                       )
                     ),

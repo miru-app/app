@@ -21,3 +21,33 @@ class PageTitleDetailed extends StatelessWidget  {
     );
   }
 }
+
+class PageTitle extends StatelessWidget  {
+  final String title;
+  final back;
+
+  PageTitle(this.title, {this.back});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
+      child: Stack(
+        children: <Widget>[
+          Center(
+            child: Text(title, style: MiruText.emphasis)
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(
+              onTap: (this.back != null) ? this.back : () {
+                Navigator.pop(context);
+              },
+              child: Icon(MiruIcons.folder, color: MiruColors.textemphasis)
+            )
+          )
+        ],
+      )
+    );
+  }
+}

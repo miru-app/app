@@ -162,6 +162,64 @@ class AnimeCardWatched extends AnimeCard {
   }
 }
 
+class AnimeCardList extends StatelessWidget  {
+  final String title;
+  final String type;
+  final String imageURL;
+
+  static const double aspectRatio = .522;
+
+  AnimeCardList({ this.title, this.imageURL, this.type});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, '/anime', arguments: {});
+        },
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                child: CachedNetworkImage(
+                    width: 161,
+                    height: 227,
+                    fit: BoxFit.cover,
+                    imageUrl: this.imageURL,
+                    placeholder: (BuildContext context, String url) => AnimeCardPlaceholderList(),
+                  )
+              ),
+              Container(
+                width: 161,
+                margin: EdgeInsets.only(top: 5),
+                child: Text(
+                  this.type,
+                  style: MiruText.text,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1
+                )
+              ),
+              Container(
+                width: 161,
+                child: Text(
+                  this.title,
+                  style: MiruText.emphasis,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2
+                )
+              )
+            ]
+          )
+        )
+      )
+    );
+
+  }
+}
+
 class AnimeCardPlaceholder extends StatelessWidget {
 
   AnimeCardPlaceholder();
@@ -175,6 +233,23 @@ class AnimeCardPlaceholder extends StatelessWidget {
       ),
       height: 156,
       width: 110,
+    );
+  }
+}
+
+class AnimeCardPlaceholderList extends StatelessWidget {
+
+  AnimeCardPlaceholderList();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: MiruColors.placeholder,
+        borderRadius: const BorderRadius.all(Radius.circular(5))
+      ),
+      height: 227,
+      width: 161,
     );
   }
 }
