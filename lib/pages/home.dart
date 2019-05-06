@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget  {
     return Container( // page itself
       color: MiruColors.dark,
       child: ListView( // list so the page can scroll
+        physics: BouncingScrollPhysics(),
         children: <Widget>[
           PageTitleDetailed('Discover','Find new anime'),
           CardSection(

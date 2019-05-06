@@ -57,6 +57,7 @@ class _AnimePageState extends State<AnimePage>  {
       color: MiruColors.dark,
       child: SafeArea( 
         child: ListView( // list so the page can scroll
+          physics: BouncingScrollPhysics(),
           children: <Widget>[
             Visibility(
               visible: showVideoPlayer,
