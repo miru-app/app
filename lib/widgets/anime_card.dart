@@ -6,16 +6,15 @@ import 'package:app/assets.dart';
 class AnimeCard extends StatelessWidget {
   final Anime anime;
   static double height = 216;
+  final onTap;
 
-  AnimeCard({this.anime});
+  AnimeCard({this.anime, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, '/anime', arguments: this.anime);
-        },
+        onTap: this.onTap,
         child: Container(
           margin: const EdgeInsets.fromLTRB(0, 0, 22, 0),
           child: Column(
@@ -52,16 +51,15 @@ class AnimeCard extends StatelessWidget {
 class AnimeCardLarge extends AnimeCard {
   final Anime anime;
   static double height = 317;
+  final onTap;
 
-  AnimeCardLarge({this.anime});
+  AnimeCardLarge({this.anime, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, '/anime', arguments: this.anime);
-        },
+        onTap: this.onTap,
         child: Container(
           margin: const EdgeInsets.fromLTRB(0, 0, 22, 0),
           child: Column(
@@ -99,16 +97,15 @@ class AnimeCardWatched extends AnimeCard {
   final Anime anime;
   final double percentageWatched;
   static double height = 230;
+  final onTap;
 
-  AnimeCardWatched({this.anime, this.percentageWatched});
+  AnimeCardWatched({this.anime, this.percentageWatched, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, '/anime', arguments: this.anime);
-        },
+        onTap: onTap,
         child: Container(
           margin: const EdgeInsets.fromLTRB(0, 0, 22, 0),
           child: Column(

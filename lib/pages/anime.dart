@@ -9,6 +9,24 @@ import 'package:app/widgets/video_player.dart';
 import 'package:app/apis/miru.dart' as MiruAPI;
 import 'package:app/apis/kitsu.dart' as kitsu; // Kitsu API methods
 
+void openAnimePage(BuildContext appContext, Anime anime) {
+  Navigator.push(appContext, PageRouteBuilder(
+    opaque: false,
+    pageBuilder: (BuildContext context, _, __) {
+      return AnimePage(anime: anime);
+    },
+    transitionsBuilder: (___, Animation<double> animation, ____, Widget child) {
+      return FadeTransition(
+        opacity: animation,
+        child: RotationTransition(
+          turns: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+          child: child,
+        ),
+      );
+    }
+  ));
+}
+
 class AnimePage extends StatefulWidget {
   AnimePage({Key key, this.anime}) : super(key: key);
 

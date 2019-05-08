@@ -1,12 +1,14 @@
 import 'dart:async';
+import 'package:app/pages/anime.dart';
 import 'package:app/widgets/anime_card.dart'; // Anime widget
 import 'package:app/anime.dart';
 import 'package:flutter/widgets.dart';
 
 class HorizontalAnimeList extends StatelessWidget  {
   final Future<dynamic> future;
+  final BuildContext appContext;
 
-  HorizontalAnimeList({this.future});
+  HorizontalAnimeList({this.future, this.appContext});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,9 @@ class HorizontalAnimeList extends StatelessWidget  {
 
             // Add the widgets to the list
             snapshot.data.forEach((Anime anime) {
-              animeList.add(AnimeCard(anime: anime));
+              animeList.add(AnimeCard(anime: anime, onTap: () {
+                openAnimePage(appContext, anime);
+              }));
             });
 
             // Building the basic UI
@@ -43,8 +47,9 @@ class HorizontalAnimeList extends StatelessWidget  {
 
 class HorizontalAnimeListLarge extends StatelessWidget  {
   final Future<dynamic> future;
+  final BuildContext appContext;
 
-  HorizontalAnimeListLarge({this.future});
+  HorizontalAnimeListLarge({this.future, this.appContext});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +63,9 @@ class HorizontalAnimeListLarge extends StatelessWidget  {
 
             // Add the widgets to the list
             snapshot.data.forEach((Anime anime) {
-              animeList.add(AnimeCardLarge(anime: anime));
+              animeList.add(AnimeCardLarge(anime: anime, onTap: () {
+                openAnimePage(appContext, anime);
+              }));
             });
 
             // Building the basic UI
@@ -81,8 +88,9 @@ class HorizontalAnimeListLarge extends StatelessWidget  {
 
 class HorizontalAnimeListWatched extends StatelessWidget  {
   final Future<dynamic> future;
+  final BuildContext appContext;
 
-  HorizontalAnimeListWatched({this.future});
+  HorizontalAnimeListWatched({this.future, this.appContext});
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +104,9 @@ class HorizontalAnimeListWatched extends StatelessWidget  {
 
             // Add the widgets to the list
             snapshot.data.forEach((Anime anime) {
-              animeList.add(AnimeCardWatched(anime: anime, percentageWatched: .42));
+              animeList.add(AnimeCardWatched(anime: anime, percentageWatched: .42, onTap: () {
+                openAnimePage(appContext, anime);
+              }));
             });
 
             // Building the basic UI

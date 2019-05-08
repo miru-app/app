@@ -30,7 +30,8 @@ class HomePage extends StatelessWidget  {
             onTap: () => {},
             child: Container(
               child: HorizontalAnimeListWatched(
-                future: kitsu.getTrending()
+                future: kitsu.getTrending(),
+                appContext: appContext
               )
             )
           ),
@@ -42,7 +43,8 @@ class HomePage extends StatelessWidget  {
               onTap: () => {},
               child: Container(
                 child: HorizontalAnimeListLarge(
-                  future: kitsu.getTrending()
+                  future: kitsu.getTrending(),
+                  appContext: appContext
                 )
               )
             )
@@ -55,7 +57,8 @@ class HomePage extends StatelessWidget  {
               onTap: () => {},
               child: Container(
                 child: HorizontalAnimeList(
-                  future: kitsu.getTrending()
+                  future: kitsu.getTrending(),
+                  appContext: appContext
                 )
               )
             )
