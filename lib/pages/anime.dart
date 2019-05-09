@@ -103,7 +103,7 @@ class _AnimePageState extends State<AnimePage>  {
               )
             ),
             AnimeDetailsCard(
-              title: title,
+              title: anime.title,
               episodeLength: '${anime.episodeLength} minutes',
               showType: anime.showType,
               startDate: anime.startDate,
