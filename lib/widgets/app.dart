@@ -37,6 +37,7 @@ class MiruAppState extends State<MiruApp> with TickerProviderStateMixin {
       if (status == AnimationStatus.completed) {
           setState(() {
             animationInProgress = false; // setting this to false removes all of the animation offsets to get ready for the next transition.
+            controller.value = 0; // resets the value so the next animation can start
           });
       }
     });
