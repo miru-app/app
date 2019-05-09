@@ -31,7 +31,7 @@ class MiruAppState extends State<MiruApp> with TickerProviderStateMixin {
     }// transition direction
 
     controller = AnimationController( // animation controller handles all animations
-      duration: const Duration(milliseconds: 500), // duration of the transition
+      duration: const Duration(milliseconds: 200), // duration of the transition
       vsync: this
     )..addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -53,7 +53,8 @@ class MiruAppState extends State<MiruApp> with TickerProviderStateMixin {
     });
   }
 
-  void changeTab(int newIndex) {
+  bool changeTab(int newIndex) {
+    if (index == newIndex || animationInProgress) return false; // dont do anything if its the same tab or still in animation
     setState(() {
       animationInProgress = true;
       previous = index;
@@ -67,6 +68,7 @@ class MiruAppState extends State<MiruApp> with TickerProviderStateMixin {
       
     });
     controller.forward();
+    return true; // success
   }
 
   double calculateOffset(int tab, double width) {
@@ -103,7 +105,7 @@ class MiruAppState extends State<MiruApp> with TickerProviderStateMixin {
     return false;
   }
 
-  int index = 3;
+  int index = 1; // starting tab
   int previous = 0;
   bool goRight = false;
   bool animationInProgress = false;
@@ -185,7 +187,7 @@ class MiruAppState extends State<MiruApp> with TickerProviderStateMixin {
             ),
             BottomBar(
               onTap: (int pageIndex) {
-                changeTab(pageIndex);
+                return changeTab(pageIndex);
               },
               selected: this.index
             )

@@ -25,7 +25,7 @@ class BottomBarState extends State<BottomBar> {
   }
 
   void changeTab(int index) {
-    this.onTap(index);
+    if (!this.onTap(index)) return; //unsuccessfull change, dont move the selected index.
     setState(() {
       selected = index;
     });
