@@ -11,6 +11,7 @@ import 'package:app/apis/kitsu.dart' as kitsu; // Kitsu API methods
 
 void openAnimePage(BuildContext appContext, Anime anime) {
   Navigator.push(appContext, PageRouteBuilder(
+    transitionDuration: Duration(milliseconds: 100),
     opaque: false,
     pageBuilder: (BuildContext context, _, __) {
       return AnimePage(anime: anime);
@@ -18,8 +19,8 @@ void openAnimePage(BuildContext appContext, Anime anime) {
     transitionsBuilder: (___, Animation<double> animation, ____, Widget child) {
       return FadeTransition(
         opacity: animation,
-        child: RotationTransition(
-          turns: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+        child: SlideTransition(
+          position: Tween<Offset>(begin: Offset(0.0, 0.3), end: Offset.zero).animate(animation),
           child: child,
         ),
       );

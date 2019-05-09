@@ -1,7 +1,35 @@
+import 'dart:ui';
+
 import 'package:app/assets.dart';
 import 'package:flutter/widgets.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends StatefulWidget {
+  final onEdit;
+
+  SearchBar({this.onEdit});
+
+  @override
+  SearchBarState createState() => new SearchBarState();
+}
+
+class SearchBarState extends State<SearchBar>  {
+  final TextEditingController textController = new TextEditingController();
+  final FocusNode focusNode = new FocusNode();
+  
+  bool hasText = false;
+
+  @override
+  void initState() {
+    textController.addListener(() {
+      widget.onEdit(textController.text);
+
+      setState(() {
+       hasText = textController.text != '';
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext ctx) {
     return Row(
@@ -9,7 +37,7 @@ class SearchBar extends StatelessWidget {
         Expanded(
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(ctx, '/searchresults');
+              FocusScope.of(ctx).requestFocus(focusNode);
             },
             child: Container(
               decoration: BoxDecoration(
@@ -27,22 +55,40 @@ class SearchBar extends StatelessWidget {
                     child: Icon(MiruIcons.search, color: MiruColors.textemphasis)
                   ),
                   Expanded(
-                    child: Text('Search...', style: MiruText.subtitle)
+                    child: Stack(
+                      children: <Widget>[
+                        Text(hasText ? '' : 'Search...', style: MiruText.subtitle),
+                        EditableText(
+                          controller: textController,
+                          focusNode: focusNode,
+                          cursorColor: MiruColors.textemphasis,
+                          backgroundCursorColor: MiruColors.component,
+                          style: MiruText.emphasis,
+                          keyboardType: TextInputType.text,
+                          keyboardAppearance: Brightness.dark,
+                          enableInteractiveSelection: true,
+                        )  
+                      ],
+                    )
                   )
                 ],
               )
             )
           )
-        )/*,
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/');
-          },
-          child:Padding(
-            padding: EdgeInsets.all(15),
-            child: Text('Cancel', style: MiruText.action)
+        ),
+        Offstage(
+          offstage: !hasText,
+          child: GestureDetector(
+            onTap: () {
+              focusNode.unfocus();
+              textController.clear();
+            },
+            child:Padding(
+              padding: EdgeInsets.all(15),
+              child: Text('Cancel', style: MiruText.action)
+            )
           )
-        )*/
+        )
       ]
     );
   }
