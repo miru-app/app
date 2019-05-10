@@ -33,7 +33,9 @@ class SettingsPage extends StatelessWidget  {
                 appContext,
                 buttontwo,
                 buttonOffset.dx,
-                buttonOffset.dy
+                buttonOffset.dy,
+                [DropdownItem(text: 'item 1'),
+                DropdownItem(text: 'item 2')]
               );
             },
             child: button
