@@ -1,5 +1,5 @@
 import 'package:app/assets.dart';
-import 'package:app/pages/list.dart';
+import 'package:app/pages/settings.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/navigationhelper.dart' as navigationHelper;
 
@@ -14,7 +14,7 @@ class SettingsTab extends StatelessWidget {
       case "/":
         page = PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-            return ListPage();
+            return SettingsPage(appContext: appContext);
           },
           transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> second, Widget child) {
             return FadeTransition(
