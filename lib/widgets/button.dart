@@ -44,6 +44,8 @@ class Button extends StatelessWidget {
   final onTap;
   final Key key;
 
+  static double width = 130;
+
   Button({ this.text, this.onTap, this.dropdown, this.key }): super(key: key);
 
   @override
@@ -52,9 +54,9 @@ class Button extends StatelessWidget {
     return GestureDetector(
       onTap: this.onTap,
       child: Container(
+        width: Button.width,
         padding: EdgeInsets.symmetric(
-          horizontal: 25,
-          vertical: 13
+          vertical: 8
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -69,6 +71,7 @@ class Button extends StatelessWidget {
         ),
         constraints: BoxConstraints.tightForFinite(),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(text, style: MiruText.emphasis),
             /*Padding(

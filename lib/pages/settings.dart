@@ -34,8 +34,18 @@ class SettingsPage extends StatelessWidget  {
                   Button(text: 'Openload'),
                   buttonOffset.dx,
                   buttonOffset.dy,
-                  [DropdownItem(text: 'item 1'),
-                  DropdownItem(text: 'item 2')]
+                  Button.width,
+                  [DropdownItem(
+                    text: 'Openload',
+                    onTap: () {
+                      print('pressed item 1');
+                    }),
+                  DropdownItem(
+                    text: 'Rapidvideo',
+                    onTap: () {
+                      print('pressed item 2');
+                    })
+                  ]
                 );
               },
               text: 'Openload',
