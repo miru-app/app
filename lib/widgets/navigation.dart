@@ -77,16 +77,6 @@ class BottomBarState extends State<BottomBar> {
                 color: selected == 4 ? MiruColors.action : MiruColors.textmuted
               )
             )
-          ),
-          GestureDetector(
-            onTap: () { changeTab(5); },
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(
-                MiruIcons.heart_filled,
-                color: selected == 5 ? MiruColors.action : MiruColors.textmuted
-              )
-            )
           )
         ]
       )
