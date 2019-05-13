@@ -5,8 +5,9 @@ import 'package:flutter/widgets.dart';
 
 class SearchBar extends StatefulWidget {
   final onEdit;
+  final FocusNode focus;
 
-  SearchBar({this.onEdit});
+  SearchBar({this.onEdit, this.focus});
 
   @override
   SearchBarState createState() => new SearchBarState();
@@ -14,24 +15,15 @@ class SearchBar extends StatefulWidget {
 
 class SearchBarState extends State<SearchBar> with TickerProviderStateMixin  {
   final TextEditingController textController = new TextEditingController();
-  final FocusNode focusNode = new FocusNode();
-  
+
+  FocusNode focusNode;
   bool hasText = false;
   AnimationController controller;
-  Animation<Offset> position;
-  Animation<double> barWidth;
-  static final Animatable<Offset> tween = Tween<Offset>(
-    begin: const Offset(1.0, 0),
-    end: Offset.zero,
-  ).chain(CurveTween(
-    curve: Curves.ease,
-  ));
-  static final Animatable<double> widthTween = Tween<double>(
+  Animation animation;
+  static final Animatable<double> tween = Tween<double>(
     begin: 0,
     end: 75, // size of cancel button with padding
-  ).chain(CurveTween(
-    curve: Curves.ease,
-  ));
+  );
 
   @override
   void initState() {
@@ -51,28 +43,35 @@ class SearchBarState extends State<SearchBar> with TickerProviderStateMixin  {
         controller.reverse();
       }
     });
+    focusNode = widget.focus;
 
     controller = AnimationController( // animation controller handles all animations
       duration: const Duration(milliseconds: 200), // duration of the transition
       vsync: this
     );
 
-    position = controller.drive(tween);
-    barWidth = widthTween.animate(CurvedAnimation(
+    animation = CurvedAnimation(
       parent: controller,
       curve: Curves.ease
-    ))..addListener(() {
-        setState(() {}); // setting state so stuff actually gets updated.
+    )..addListener(() {
+      setState((){});
     });
+
+    focusNode.addListener(() {
+      if (!controller.isAnimating) {
+        controller.forward();
+      }
+    });
+
   }
 
   @override
   Widget build(BuildContext ctx) {
-    final double width = MediaQuery.of(context).size.width - 40; // width minus padding
     return Container(
-      width: width,
-      child: Stack(
+      child: Row(
       children: <Widget>[
+        Expanded(
+          child:
         GestureDetector(
             onTap: () {
               FocusScope.of(ctx).requestFocus(focusNode);
@@ -82,7 +81,6 @@ class SearchBarState extends State<SearchBar> with TickerProviderStateMixin  {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 color: MiruColors.component
               ),
-              width: width - barWidth.value,
               padding: EdgeInsets.symmetric(
                 horizontal: 15,
                 vertical: 12
@@ -114,24 +112,21 @@ class SearchBarState extends State<SearchBar> with TickerProviderStateMixin  {
               )
             )
           ),
-          Positioned(
-            right: 0,
-            child: SlideTransition(
-            position: position,
+        ),
+          SizedBox(
+            width: tween.evaluate(animation),
             child: GestureDetector(
-                    onTap: () {
-                      focusNode.unfocus();
-                      textController.clear();
-                    },
-                    child:Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Text('Cancel', style: MiruText.action)
-                    )
-                  )
-      
+              onTap: () {
+                textController.clear();
+                focusNode.unfocus();
+              },
+              child: Padding(
+                padding: EdgeInsets.all(15),
+                child: Text('Cancel', softWrap: false, style: MiruText.action)
               )
+            )
           )
-            ],
+      ],
     ));
   }
 }
