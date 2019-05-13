@@ -2,6 +2,7 @@ import 'package:app/widgets/button.dart';
 import 'package:app/widgets/dropdown.dart';
 import 'package:app/widgets/page.dart';
 import 'package:app/widgets/settingsitem.dart';
+import 'package:app/widgets/toggle.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/assets.dart';
 
@@ -51,6 +52,14 @@ class SettingsPage extends StatelessWidget  {
               text: 'Openload',
               key: buttonkey
             )
+          ),
+          SettingsItem(
+            text: 'A toggle thats off',
+            child: Toggle(false)
+          ),
+          SettingsItem(
+            text: 'An active toggle',
+            child: Toggle(true)
           )
         ]
       )
