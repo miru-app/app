@@ -128,7 +128,6 @@ class DropdownItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         this.onTap();
-        Navigator.pop(context);
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 8),
