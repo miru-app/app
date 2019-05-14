@@ -50,7 +50,7 @@ class LibraryPage extends StatelessWidget  {
               children: List.generate(5, (index) {
                 return FolderCard(
                   color: MiruColors.red,
-                  imageURL: '',
+                  imageURL: 'https://media.kitsu.io/anime/poster_images/42080/large.jpg',
                   count: 5,
                   title: 'Studio Ghibli',
                   onTap: () {}
