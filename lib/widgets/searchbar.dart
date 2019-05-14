@@ -98,7 +98,7 @@ class SearchBarState extends State<SearchBar> with TickerProviderStateMixin  {
                           keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
                           enableInteractiveSelection: true,
-                        )  
+                        )
                       ],
                     )
                   )

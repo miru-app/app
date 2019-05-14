@@ -23,7 +23,9 @@ class LibraryPage extends StatelessWidget  {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: <Widget>[
-                    IconButton(iconData: MiruIcons.folder, text: 'Recently watched', onTap: () {}),
+                    IconButton(iconData: MiruIcons.folder, text: 'Recently watched', onTap: () {
+                      Navigator.pushNamed(context, '/list');
+                    }),
                     IconButton(iconData: MiruIcons.heart, text: 'Liked anime', onTap: () {})
                   ],
                 ),
