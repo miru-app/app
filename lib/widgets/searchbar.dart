@@ -57,12 +57,6 @@ class SearchBarState extends State<SearchBar> with TickerProviderStateMixin  {
       setState((){});
     });
 
-    focusNode.addListener(() {
-      if (!controller.isAnimating) {
-        controller.forward();
-      }
-    });
-
   }
 
   @override
