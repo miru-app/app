@@ -85,9 +85,9 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
             left: widget.buttonX,
             top: widget.buttonY,
             child: Column(
+              verticalDirection: VerticalDirection.up, // button goes on top, making the dropdown slide from below
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                widget.button,
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: FadeTransition(
@@ -107,7 +107,8 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
                       )
                     )
                   )
-                )
+                ),
+                widget.button
               ],
             )
           )
