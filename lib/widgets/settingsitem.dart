@@ -11,6 +11,7 @@ class SettingsItem extends StatelessWidget  {
   Widget build(BuildContext context) {
 
     return Container(
+      height: 46,
       padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
       child: Row(
         children: <Widget>[
