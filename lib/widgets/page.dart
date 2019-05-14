@@ -43,7 +43,7 @@ class PageTitle extends StatelessWidget  {
               onTap: (this.back != null) ? this.back : () {
                 Navigator.pop(context);
               },
-              child: Icon(MiruIcons.folder, color: MiruColors.textemphasis)
+              child: Icon(MiruIcons.back, size: 20 ,color: MiruColors.textemphasis)
             )
           )
         ],

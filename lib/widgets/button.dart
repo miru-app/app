@@ -46,7 +46,7 @@ class Button extends StatelessWidget {
 
   static double width = 130;
 
-  Button({ this.text, this.onTap, this.dropdown, this.key }): super(key: key);
+  Button({ this.text, this.onTap, this.dropdown = false, this.key }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,13 +71,18 @@ class Button extends StatelessWidget {
         ),
         constraints: BoxConstraints.tightForFinite(),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(text, style: MiruText.emphasis),
-            /*Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-              child: Icon(MiruIcons, color: MiruColors.textemphasis)
-            )*/
+            Visibility(
+              visible: this.dropdown,
+              
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(2, 2, 0, 0),
+                child: Icon(MiruIcons.dropdown, size: 15, color: MiruColors.textemphasis)
+              )
+            )
           ],
         )
       )

@@ -43,7 +43,7 @@ class BottomBarState extends State<BottomBar> {
             child: Padding(
               padding: EdgeInsets.all(10),
               child: Icon(
-                MiruIcons.heart_filled,
+                MiruIcons.home,
                 color: selected == 1 ? MiruColors.action : MiruColors.textmuted
               )
             )

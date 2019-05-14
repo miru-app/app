@@ -32,7 +32,7 @@ class SettingsPage extends StatelessWidget  {
 
                 openDropdown(
                   appContext,
-                  Button(text: 'Openload'),
+                  Button(text: 'Openload', dropdown: true),
                   buttonOffset.dx,
                   buttonOffset.dy,
                   Button.width,
@@ -50,6 +50,7 @@ class SettingsPage extends StatelessWidget  {
                 );
               },
               text: 'Openload',
+              dropdown: true,
               key: buttonkey
             )
           ),
