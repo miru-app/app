@@ -68,6 +68,10 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
     Navigator.pop(context);
   }
 
+  void select(int i) {
+    print('pressed item');
+    prepareQuit();
+  }
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: prepareQuit,
@@ -102,7 +106,15 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
                         ),
                         padding: EdgeInsets.symmetric(vertical: 8),
                         child: Column(
-                          children: widget.children
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: List.generate(widget.children.length, (int i) {
+                            return GestureDetector(
+                              onTap: () {
+                                select(i);
+                              },
+                              child: widget.children[i]
+                            );
+                          })
                         )
                       )
                     )
@@ -121,17 +133,14 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
 
 class DropdownItem extends StatelessWidget {
   final String text;
-  final onTap;
 
-  DropdownItem({this.text, this.onTap}) : super();
+  DropdownItem({this.text}) : super();
 
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        this.onTap();
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8),
+    return Container(
+      color: MiruColors.component, //add color so its hitbox is larger
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: Center(
         child: Text(text, style: MiruText.text)
       )
     );
