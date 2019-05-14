@@ -95,7 +95,7 @@ class _AnimePageState extends State<AnimePage>  {
                   Expanded(
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      child: Icon(MiruIcons.folder, color: MiruColors.textemphasis)
+                      child: Icon(MiruIcons.back, size: 20, color: MiruColors.textemphasis)
                     )
                   ),
                   Icon(MiruIcons.folder_add, color: MiruColors.textemphasis),
