@@ -1,16 +1,6 @@
 import 'package:app/assets.dart';
 import 'package:flutter/widgets.dart';
 
-void openDropdown(BuildContext appContext, Widget button, double buttonX, double buttonY, double width, List<DropdownItem> items) {
-  Navigator.push(appContext, PageRouteBuilder(
-    opaque: false,
-    transitionDuration: Duration.zero,
-    pageBuilder: (BuildContext context, _, __) {
-      return DropdownButton(button: button, width: width, buttonX: buttonX, buttonY: buttonY, children: items);
-    }
-  ));
-}
-
 class DropdownButton extends StatefulWidget {
   final Widget button;
   final double buttonX;
@@ -144,6 +134,39 @@ class DropdownItem extends StatelessWidget {
         child: Text(text, style: MiruText.text)
       )
     );
+  }
+
+}
+
+class DropdownContainer extends StatelessWidget {
+  final Function(Key, Function) builder;
+  final List<DropdownItem> dropdown;
+  final BuildContext appContext;
+
+  DropdownContainer({this.builder, this.dropdown, this.appContext});
+
+  Widget build(BuildContext context) {
+    GlobalKey key = GlobalKey();
+
+    // button used to render dropdown
+    Widget renderButton = builder(Key('testing'), () {});
+
+    // button used on settings page
+    Widget button = builder(key, () {
+      final RenderBox box = key.currentContext.findRenderObject(); // find render object
+      Offset buttonOffset = box.localToGlobal(Offset.zero); // get global offset coords to position dropdown
+
+      // open dropdown
+      Navigator.push(appContext, PageRouteBuilder(
+        opaque: false,
+        transitionDuration: Duration.zero,
+        pageBuilder: (_, __, ___) {
+          return DropdownButton(button: renderButton, width: 130, buttonX: buttonOffset.dx, buttonY: buttonOffset.dy, children: dropdown);
+        }
+      ));
+    });
+    
+    return button;
   }
 
 }

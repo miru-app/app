@@ -25,28 +25,15 @@ class SettingsPage extends StatelessWidget  {
           PageTitleDetailed('Settings','Configure your player'),
           SettingsItem(
             text: 'Preffered provider',
-            child: Button(
-              onTap: () {
-                final RenderBox box = buttonkey.currentContext.findRenderObject();
-                Offset buttonOffset = box.localToGlobal(Offset.zero);
-
-                openDropdown(
-                  appContext,
-                  Button(text: 'Openload', dropdown: true),
-                  buttonOffset.dx,
-                  buttonOffset.dy,
-                  Button.width,
-                  [DropdownItem(
-                    text: 'Openload'
-                  ),
-                  DropdownItem(
-                    text: 'Rapidvideo'
-                  )]
-                );
+            child: DropdownContainer(
+              builder: (Key key, Function onTap) {
+                return Button(key: key, onTap: onTap, dropdown: true, text: 'OpenLoad');
               },
-              text: 'Openload',
-              dropdown: true,
-              key: buttonkey
+              appContext: appContext,
+              dropdown: [
+                DropdownItem(text: 'item 1'),
+                DropdownItem(text: 'item 2')
+              ]
             )
           ),
           SettingsItem(
