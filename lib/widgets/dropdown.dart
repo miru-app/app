@@ -1,4 +1,5 @@
 import 'package:app/assets.dart';
+import 'package:app/widgets/button.dart';
 import 'package:flutter/widgets.dart';
 
 class DropdownButton extends StatefulWidget {
@@ -8,8 +9,10 @@ class DropdownButton extends StatefulWidget {
   final List<DropdownItem> children;
   final int maxVisibleChildren;
   final double width;
+  final Function(String) onChange;
+  final Function onToggle;
 
-  DropdownButton({this.button, this.width, this.children, this.buttonX, this.buttonY, this.maxVisibleChildren = 99}) : super();
+  DropdownButton({this.button, this.width, this.children, this.buttonX, this.buttonY, this.onChange, this.onToggle, this.maxVisibleChildren = 99}) : super();
 
   @override
   DropdownButtonState createState() {
@@ -47,11 +50,13 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
     });
 
     controller.forward(); //start animation on load
+    widget.onToggle();
   }
 
   void prepareQuit() {
     goQuit = true;
     controller.reverse();
+    widget.onToggle();
   }
 
   void quit() {
@@ -60,6 +65,7 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
 
   void select(int i) {
     print('pressed item');
+    widget.onChange('item');
     prepareQuit();
   }
   Widget build(BuildContext context) {
@@ -138,30 +144,67 @@ class DropdownItem extends StatelessWidget {
 
 }
 
-class DropdownContainer extends StatelessWidget {
-  final Function(Key, Function) builder;
+class DropdownContainer extends StatefulWidget {
+  final Function(Key, Animation, Function) builder; // key for button, onTap(Widget button) for button
   final List<DropdownItem> dropdown;
   final BuildContext appContext;
 
   DropdownContainer({this.builder, this.dropdown, this.appContext});
 
+  @override
+  DropDownContainerState createState() => DropDownContainerState();
+
+}
+
+class DropDownContainerState extends State<DropdownContainer> with TickerProviderStateMixin {
+  AnimationController controller;
+  Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = new AnimationController(
+      duration: new Duration(milliseconds: 200),
+      vsync: this,
+    );
+    animation = new CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeInOut
+    )..addListener(() {
+      setState((){});
+    });
+  }
+       
   Widget build(BuildContext context) {
     GlobalKey key = GlobalKey();
 
     // button used to render dropdown
-    Widget renderButton = builder(Key('testing'), () {});
+    Button renderButton = widget.builder(Key('testing'), animation, null);
 
     // button used on settings page
-    Widget button = builder(key, () {
+    Button button = widget.builder(key, animation, (Button button) {
       final RenderBox box = key.currentContext.findRenderObject(); // find render object
       Offset buttonOffset = box.localToGlobal(Offset.zero); // get global offset coords to position dropdown
-
+      
       // open dropdown
-      Navigator.push(appContext, PageRouteBuilder(
+      Navigator.push(widget.appContext, PageRouteBuilder(
         opaque: false,
         transitionDuration: Duration.zero,
         pageBuilder: (_, __, ___) {
-          return DropdownButton(button: renderButton, width: 130, buttonX: buttonOffset.dx, buttonY: buttonOffset.dy, children: dropdown);
+          return DropdownButton(
+            button: renderButton,
+            width: 130,
+            buttonX: buttonOffset.dx,
+            buttonY: buttonOffset.dy,
+            children: widget.dropdown,
+            onChange: (String text) {
+              
+            },
+            onToggle: () {
+              if (controller.isCompleted) controller.reverse();
+              else controller.forward();
+            }
+          );
         }
       ));
     });

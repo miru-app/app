@@ -26,8 +26,8 @@ class SettingsPage extends StatelessWidget  {
           SettingsItem(
             text: 'Preffered provider',
             child: DropdownContainer(
-              builder: (Key key, Function onTap) {
-                return Button(key: key, onTap: onTap, dropdown: true, text: 'OpenLoad');
+              builder: (Key key, Animation animation, Function onTap) {
+                return Button(key: key, animation: animation, onTap: onTap, dropdown: true, text: 'OpenLoad');
               },
               appContext: appContext,
               dropdown: [
