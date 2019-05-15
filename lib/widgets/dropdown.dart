@@ -9,7 +9,7 @@ class DropdownButton extends StatefulWidget {
   final List<DropdownItem> children;
   final int maxVisibleChildren;
   final double width;
-  final Function(String) onChange;
+  final Function(int) onChange;
   final Function onToggle;
 
   DropdownButton({this.button, this.width, this.children, this.buttonX, this.buttonY, this.onChange, this.onToggle, this.maxVisibleChildren = 99}) : super();
@@ -64,11 +64,21 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
   }
 
   void select(int i) {
-    print('pressed item');
-    widget.onChange('item');
+    widget.onChange(i);
     prepareQuit();
   }
   Widget build(BuildContext context) {
+    List<Widget> list = [];
+    widget.children.forEach((DropdownItem item) {
+      if (item == null) return;
+      return list.add(GestureDetector(
+        onTap: () {
+          select(widget.children.indexOf(item));
+        },
+        child: item
+      ));
+    });
+
     return GestureDetector(
       onTap: prepareQuit,
       child: Stack(
@@ -103,14 +113,7 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
                         padding: EdgeInsets.symmetric(vertical: 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: List.generate(widget.children.length, (int i) {
-                            return GestureDetector(
-                              onTap: () {
-                                select(i);
-                              },
-                              child: widget.children[i]
-                            );
-                          })
+                          children: list
                         )
                       )
                     )
@@ -145,11 +148,12 @@ class DropdownItem extends StatelessWidget {
 }
 
 class DropdownContainer extends StatefulWidget {
-  final Function(Key, Animation, Function) builder; // key for button, onTap(Widget button) for button
+  final Function(Key, Animation, String, Function) builder; // key for button, onTap(Widget button) for button
   final List<DropdownItem> dropdown;
   final BuildContext appContext;
+  final int index;
 
-  DropdownContainer({this.builder, this.dropdown, this.appContext});
+  DropdownContainer({this.builder, this.dropdown, this.appContext, this.index = 0});
 
   @override
   DropDownContainerState createState() => DropDownContainerState();
@@ -159,10 +163,12 @@ class DropdownContainer extends StatefulWidget {
 class DropDownContainerState extends State<DropdownContainer> with TickerProviderStateMixin {
   AnimationController controller;
   Animation<double> animation;
+  int index;
 
   @override
   void initState() {
     super.initState();
+    index = widget.index;
     controller = new AnimationController(
       duration: new Duration(milliseconds: 200),
       vsync: this,
@@ -179,13 +185,15 @@ class DropDownContainerState extends State<DropdownContainer> with TickerProvide
     GlobalKey key = GlobalKey();
 
     // button used to render dropdown
-    Button renderButton = widget.builder(Key('testing'), animation, null);
+    Button renderButton = widget.builder(Key('testing'), animation, widget.dropdown[index].text, null);
 
     // button used on settings page
-    Button button = widget.builder(key, animation, (Button button) {
+    Button button = widget.builder(key, animation, widget.dropdown[index].text, (Button button) {
       final RenderBox box = key.currentContext.findRenderObject(); // find render object
       Offset buttonOffset = box.localToGlobal(Offset.zero); // get global offset coords to position dropdown
-      
+      List<Widget> children = widget.dropdown.toList();
+      children[index] = null; // remove current item from the list
+
       // open dropdown
       Navigator.push(widget.appContext, PageRouteBuilder(
         opaque: false,
@@ -196,9 +204,11 @@ class DropDownContainerState extends State<DropdownContainer> with TickerProvide
             width: 130,
             buttonX: buttonOffset.dx,
             buttonY: buttonOffset.dy,
-            children: widget.dropdown,
-            onChange: (String text) {
-              
+            children: children,
+            onChange: (int i) {
+              setState(() {
+                index = i;
+              });
             },
             onToggle: () {
               if (controller.isCompleted) controller.reverse();
