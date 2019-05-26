@@ -2,10 +2,13 @@ import 'package:app/assets.dart';
 import 'package:app/widgets/app.dart';
 import 'package:flutter/widgets.dart';
 import 'package:app/navigationhelper.dart' as navigationHelper;
+import 'package:app/util/database.dart' as database;
 //import 'package:flutter/rendering.dart'; // ui debug
 
-void main() {
+void main() async {
   //debugPaintSizeEnabled=true; // enable ui debug
+
+  await database.createDefaults();
   
   Route generate(RouteSettings settings) {
     return PageRouteBuilder(

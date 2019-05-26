@@ -67,6 +67,7 @@ class DropdownButtonState extends State<DropdownButton> with TickerProviderState
     widget.onChange(i);
     prepareQuit();
   }
+  
   Widget build(BuildContext context) {
     List<Widget> list = [];
     widget.children.forEach((DropdownItem item) {
@@ -207,6 +208,7 @@ class DropDownContainerState extends State<DropdownContainer> with TickerProvide
             children: children,
             onChange: (int i) {
               setState(() {
+                // UPDATE SETTING VALUE HERE
                 index = i;
               });
             },

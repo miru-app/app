@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget  {
       child: ListView( // list so the page can scroll
         physics: BouncingScrollPhysics(),
         children: <Widget>[
-          PageTitleDetailed('Discover','Find new anime'),
+          PageTitleDetailed('Discover', 'Find new anime'),
           CardSection(
             title: 'Unfinished',
             actionText: 'see all',

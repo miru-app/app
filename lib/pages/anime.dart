@@ -43,7 +43,7 @@ class _AnimePageState extends State<AnimePage>  {
   Visibility playerContainer;
   bool showVideoPlayer = false;
   String currentlyPlayingStream;
-  String title = '';
+  String currentlyPlayingEpisodeTitle;
 
   _AnimePageState({Key key, this.anime});
 
@@ -58,7 +58,8 @@ class _AnimePageState extends State<AnimePage>  {
     final stream = streams.first;
 
     setState(() {
-      title = 'stream.file';
+      //currentlyPlayingEpisodeTitle = '${anime.title} - ${episode.number}';
+      currentlyPlayingEpisodeTitle = stream.file;
       currentlyPlayingStream = stream.file;
       showVideoPlayer = true;
     });
@@ -78,11 +79,22 @@ class _AnimePageState extends State<AnimePage>  {
         child: ListView( // list so the page can scroll
           physics: BouncingScrollPhysics(),
           children: <Widget>[
+            /*
             Visibility(
               visible: showVideoPlayer,
               child: MiruVideoPlayerWidget(
                 url: currentlyPlayingStream,
-                title: 'Tensei Shitara Slime Datta Ken - 01',
+                title: currentlyPlayingEpisodeTitle,
+                onExit: _exitVideoPlayer
+              ),
+            ),
+            */
+
+            Container(
+              height: showVideoPlayer ? 100 : 0,
+              child: MiruVideoPlayerWidget(
+                url: currentlyPlayingStream,
+                title: currentlyPlayingEpisodeTitle,
                 onExit: _exitVideoPlayer
               ),
             ),

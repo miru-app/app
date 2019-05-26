@@ -35,7 +35,9 @@ class ToggleState extends State<Toggle> with TickerProviderStateMixin {
       parent: controller,
       curve: Curves.easeInOut
     )..addListener(() {
-      setState((){});
+      setState((){
+        // UPDATE SETTING VALUE HERE
+      });
     });
 
     if (widget.isOn) {
